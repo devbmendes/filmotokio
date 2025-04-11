@@ -6,24 +6,26 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?style=for-the-badge&logo=mysql)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge)
 
-**Filmotokio** é um portal para cinéfilos apaixonados pela sétima arte. Com ele, você pode cadastrar filmes, avaliar, escrever reviews e explorar obras de diversos gêneros e diretores.
+**Filmotokio** é um portal para cinéfilos apaixonados pela sétima arte. Com ele, você pode registar filmes, avaliar, escrever reviews e explorar obras de diversos gêneros e diretores.
+
+## Visão Geral
+
+Este projeto faz parte do desafio final da formação Programação Spring Boot **Tokio School**. O sistema está dividido em três partes:
+
+1. **Aplicação Web** – Interface web para utilizadores interagirem com filmes, pontuações e críticas.
+2. **API REST** – Fornece endpoints para consumir dados dos filmes, reviews e utilizadores.
+3. **Processo Batch** – Processo agendado para tarefas periódicas, como migração ou atualização de dados.
 
 ## Demonstração
 
-> (Substituir por suas imagens reais ou GIFs)
-
-![Tela inicial](docs/tela-inicial.png)
-![Detalhes do filme](docs/detalhes-filme.png)
-
----
 
 ## Funcionalidades
 
-- Cadastro e login de usuários
-- Papéis: ADMIN, MODERATOR, USER
-- Cadastro de filmes com ficha técnica
+- Registro e login de utilizadores
+- Papéis: ADMIN, USER
+- Registro de filmes com ficha técnica
 - Avaliações (pontuação de 1 a 5)
-- Reviews dos usuários
+- Reviews dos utilizadores
 - Associação de artistas (atores, diretores, músicos etc.)
 - Tarefas batch agendadas para migração/atualização de filmes
 
@@ -59,8 +61,8 @@ No arquivo `src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/filmotokio
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
+spring.datasource.username=seu_utilizador
+spring.datasource.password=sua_password
 spring.jpa.hibernate.ddl-auto=update
 ```
 
@@ -72,40 +74,6 @@ No IntelliJ ou terminal:
 
 ```bash
 ./mvnw spring-boot:run
-```
-
----
-
-## Docker (opcional)
-
-Você pode rodar a aplicação com Docker e Docker Compose.
-
-### 1. Crie o `docker-compose.yml`
-
-```yaml
-version: '3.8'
-services:
-  mysql:
-    image: mysql:8
-    container_name: filmotokio_db
-    environment:
-      MYSQL_DATABASE: filmotokio
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysql
-```
-
-### 2. Suba o ambiente
-
-```bash
-docker-compose up --build
 ```
 
 ---
@@ -136,11 +104,10 @@ Sinta-se livre para fazer um fork do repositório e contribuir com PRs!
 
 ## Autor
 
-**Bruno Mendes**  
-[GitHub](https://github.com/devbmendes) | [LinkedIn](https://linkedin.com/in/SEU_USUARIO)
+**Balduino Mendes**  
+[GitHub](https://github.com/devbmendes) | [LinkedIn](https://linkedin.com/in/devbmendes)
 
 ---
 
 ## Licença
-
-Este projeto está licenciado sob a licença MIT.
+Este projeto é desenvolvido para fins educativos e acadêmicos na Tokio School.
