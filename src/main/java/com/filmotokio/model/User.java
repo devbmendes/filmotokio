@@ -1,18 +1,17 @@
 package com.filmotokio.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class User extends Person {
-    private String username;
-    private String password;
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
+    private String password;
     private Date birthDate;
     private Date registrationDate;
     private String image;
