@@ -1,4 +1,4 @@
-package com.filmotokio.filmotokio;
+package com.tokyoschool.filmotokio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
