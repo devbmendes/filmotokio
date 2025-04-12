@@ -32,10 +32,10 @@ public class Film {
 
     @ManyToMany
     @JoinTable(
-            name = "film_person",
+            name = "film_cast",
             joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "person_id")
+            inverseJoinColumns = @JoinColumn(name = "cast_id")
     )
-    private List<Person> crew;
+    private List<Cast> crew;
 }
 
