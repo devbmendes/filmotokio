@@ -23,8 +23,6 @@ public class Film {
     private int duration;
     private String synopsis;
     private String poster;
-    private boolean migrate;
-    private Date dateMigrate;
 
     @OneToMany(mappedBy = "film")
     private List<Review> reviews;
@@ -39,5 +37,13 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "cast_id")
     )
     private List<Cast> crew;
+
+    public Film(String title, int year, int duration, String synopsis, String poster, boolean migrate) {
+        this.title = title;
+        this.year = year;
+        this.duration = duration;
+        this.synopsis = synopsis;
+        this.poster = poster;
+    }
 }
 
