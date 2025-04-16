@@ -3,10 +3,12 @@ package com.filmotokio.service;
 import com.filmotokio.model.Film;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class FilmImpl implements FilmeInterface{
 
     @Autowired

@@ -3,10 +3,12 @@ package com.filmotokio.service;
 import com.filmotokio.model.User;
 import com.filmotokio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserImpl implements UserInterface{
     @Autowired
     private UserRepository userRepository;

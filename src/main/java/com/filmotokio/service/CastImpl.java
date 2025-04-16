@@ -5,10 +5,12 @@ import com.filmotokio.model.Film;
 import com.filmotokio.repository.CastRepository;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CastImpl implements CastInterface{
     @Autowired
     private CastRepository castRepository;
