@@ -1,5 +1,6 @@
 package com.filmotokio.controller;
 
+import com.filmotokio.DTO.UserDto;
 import com.filmotokio.model.User;
 import com.filmotokio.service.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UserController {
         return "allUsers";
     }
     @PostMapping("save")
-    public String saveUser(User user){
+    public String saveUser(UserDto userDto){
         userImpl.save(user);
         return "redirect:/user/all";
     }

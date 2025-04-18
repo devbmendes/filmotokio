@@ -1,5 +1,6 @@
 package com.filmotokio.service;
 
+import com.filmotokio.DTO.UserDto;
 import com.filmotokio.model.User;
 import com.filmotokio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,18 @@ public class UserImpl implements UserInterface{
     }
 
     @Override
-    public User save(User user) {
+    public User save(UserDto userDto) {
+        User user = new User();
+        user.setName(userDto.getName());
+        user.setSurname(userDto.getSurname());
+        if(userDto.getPassword().equals(userDto.getPasswordMatch())){
+            user.setPassword(userDto.getPassword());
+        }else{
+            
+        }
+        user.setBirthDate(userDto.getBirthDate());
+        user.setEmail(userDto.getEmail());
+        user.setImage(userDto.getImage());
         return userRepository.save(user);
     }
 
