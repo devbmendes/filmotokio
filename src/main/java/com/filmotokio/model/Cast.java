@@ -22,8 +22,8 @@ public class Cast extends Person{
 
 
 
-    public Cast(String surname, String name, PersonType type) {
-        super(surname, name);
+    public Cast(String name, String surname, PersonType type) {
+        super(name, surname);
         this.type = type;
     }
 }
