@@ -24,6 +24,7 @@ public class UserImpl implements UserInterface{
 
         if(userDto.getPassword().equals(userDto.getPasswordMatch())){
             User user = new User();
+            user.setName(userDto.getName());
         }else{
 
         }

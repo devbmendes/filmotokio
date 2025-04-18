@@ -18,7 +18,8 @@ public class UserController {
     private UserImpl userImpl;
 
     @GetMapping
-    public String user(){
+    public String user(Model model){
+        model.addAttribute("user",new UserDto());
         return "userAdd";
     }
     @GetMapping("/all")
