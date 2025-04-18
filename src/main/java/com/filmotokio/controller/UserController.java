@@ -30,7 +30,7 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){
         userImpl.deleteById(id);
-        return "redrect:/user/all";
+        return "redirect:/user/all";
     }
     @GetMapping("/get/{id}")
     public String getById(@PathVariable Long id,Model model){
