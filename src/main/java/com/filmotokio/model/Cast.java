@@ -1,10 +1,8 @@
 package com.filmotokio.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 
 @Entity
 @Getter
@@ -22,8 +20,8 @@ public class Cast extends Person{
 
 
 
-    public Cast(String name, String surname, PersonType type) {
-        super(name, surname);
+    public Cast(String name, String surname,String email, PersonType type) {
+        super(name, surname,email);
         this.type = type;
     }
 }

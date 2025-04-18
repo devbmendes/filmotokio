@@ -21,18 +21,13 @@ public class UserImpl implements UserInterface{
 
     @Override
     public User save(UserDto userDto) {
-        User user = new User();
-        user.setName(userDto.getName());
-        user.setSurname(userDto.getSurname());
+
         if(userDto.getPassword().equals(userDto.getPasswordMatch())){
-            user.setPassword(userDto.getPassword());
+            User user = new User();
         }else{
 
         }
-        user.setBirthDate(userDto.getBirthDate());
-        user.setEmail(userDto.getEmail());
-        user.setImage(userDto.getImage());
-        return userRepository.save(user);
+        return userRepository.save(new User());
     }
 
     @Override

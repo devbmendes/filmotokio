@@ -1,28 +1,27 @@
 package com.filmotokio.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String surname;
+    private String email;
 
-    public Person(String name, String surname) {
-        this.surname = surname;
+    public Person(String name, String surname, String email) {
         this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
+    public Person(){
+    }
+
+
 }
 

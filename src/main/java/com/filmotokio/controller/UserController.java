@@ -17,6 +17,10 @@ public class UserController {
     @Autowired
     private UserImpl userImpl;
 
+    @GetMapping
+    public String user(){
+        return "userAdd";
+    }
     @GetMapping("/all")
     public String getAll(Model model){
         List<User> users = userImpl.getAll();
