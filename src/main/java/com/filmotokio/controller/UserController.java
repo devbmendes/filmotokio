@@ -25,7 +25,7 @@ public class UserController {
     }
     @PostMapping("save")
     public String saveUser(UserDto userDto){
-        userImpl.save(user);
+        userImpl.save(userDto);
         return "redirect:/user/all";
     }
     @DeleteMapping("/delete/{id}")
