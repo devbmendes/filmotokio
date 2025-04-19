@@ -2,31 +2,63 @@
 <head th:replace="/fragment/head::head(title='FILMETOKIO - Adicionar Utilizador')"></head>
 <body>
     <div th:replace="fragment/navbar"></div>
-    <div class="container">
+    <div class="container" style="margin-top:130px">
         <div class="row">
-            <form th:action="@{/user/save}" th:object="${user}">
-                <div class="mb-3">
-                    <input type="text" class="form-control " id="firstName" placeholder="First Name"
-                    th:field="*{name}">
+            <div class="col-md-8 offset-2">
+                <div style="margin-bottom:30px">
+                    <h3>Registar Utilizador</h3>
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control " id="LastName" placeholder="Last Name"
-                    th:field="*{surname}">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control " id="email" placeholder="example@gmail.com"
-                    th:field="*{email}">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+                <form th:action="@{'/user/save'}" method="post" th:object="${user}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="firstName" placeholder="First Name"
+                                   th:field="*{name}" style="height:50px">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control " id="LastName" placeholder="Last Name"
+                                   th:field="*{surname}" style="height:50px">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control " id="email" placeholder="example@gmail.com"
+                               th:field="*{email}" style="height:50px">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="date" class="form-control " id="date" placeholder="Birthday"
+                                   th:field="*{birthDate}" style="height:50px">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <select class="form-select" aria-label="Default select example" style="height:50px">
+                                <option selected>User Type</option>
+                                <option value="NORMAL">NORMAL</option>
+                                <option value="ADMIN">ADMIN</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                               th:field="*{password}" style="height:50px">
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="passwordMatch"
+                               placeholder="Confirm Password" style="height:50px"
+                               th:field="*{passwordMatch}">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <button type="submit" class="btn btn-success " style="width:100%;height:50px">Save</button>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button class="btn btn-info" style="width:100%;height:50px">Clean</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
         </div>
 
     </div>

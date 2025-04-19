@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ public class UserController {
 
     @GetMapping
     public String user(Model model){
+
         model.addAttribute("user",new UserDto());
         return "userAdd";
     }
@@ -31,7 +33,7 @@ public class UserController {
     @PostMapping("save")
     public String saveUser(UserDto userDto){
         userImpl.save(userDto);
-        return "redirect:/user/all";
+        return "redirect:/user";
     }
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){

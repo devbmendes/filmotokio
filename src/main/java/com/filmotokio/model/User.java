@@ -3,6 +3,7 @@ package com.filmotokio.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class User extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String password;
-    private Date birthDate;
+    private LocalDate birthDate;
     private Date registrationDate;
     private String image;
 
@@ -29,7 +30,7 @@ public class User extends Person {
     private UserRole role;
 
 
-    public User(String name, String surname, String email, String password, Date birthDate, Date registrationDate, String image, UserRole role) {
+    public User(String name, String surname, String email, String password, LocalDate birthDate, Date registrationDate, String image, UserRole role) {
         super(name,surname,email);
         this.password = password;
         this.birthDate = birthDate;

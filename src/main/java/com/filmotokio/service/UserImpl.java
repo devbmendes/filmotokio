@@ -6,6 +6,7 @@ import com.filmotokio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,10 +26,16 @@ public class UserImpl implements UserInterface{
         if(userDto.getPassword().equals(userDto.getPasswordMatch())){
             User user = new User();
             user.setName(userDto.getName());
+            user.setSurname(userDto.getSurname());
+            user.setEmail(userDto.getEmail());
+            user.setBirthDate(userDto.getBirthDate());
+            user.setRegistrationDate(new Date());
+            user.setPassword(userDto.getPassword());
+            user.setImage(userDto.getImage());
+            return userRepository.save(user);
         }else{
-
+            return new User();
         }
-        return userRepository.save(new User());
     }
 
     @Override
