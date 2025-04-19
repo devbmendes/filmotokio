@@ -1,6 +1,7 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Filmotokio</a>
+    <a class="navbar-brand" href="#" th:href="@{/user}">Filmotokio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,10 +14,10 @@
           <a class="nav-link" href="#">Novo Filme</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Criar Utilizador</a>
+          <a class="nav-link" th:href="@{/user}">Criar Utilizador</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Criar Elenco</a>
+          <a class="nav-link" th:href="@{/cast}">Criar Elenco</a>
         </li>
 
       </ul>
