@@ -12,4 +12,5 @@ public interface CastInterface {
     public Cast save(CastDto castDto);
     public Optional<Cast> findById(Long id);
     public Boolean deleteById(Long id);
+    public List<Cast> findByType(String type);
 }

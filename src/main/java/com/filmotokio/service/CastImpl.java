@@ -37,4 +37,10 @@ public class CastImpl implements CastInterface{
     public Boolean deleteById(Long id) {
         return findById(id).isPresent();
     }
+
+    @Override
+    public List<Cast> findByType(String type) {
+        PersonType personType = PersonType.valueOf(type.toUpperCase());
+        return castRepository.findByType(personType);
+    }
 }
