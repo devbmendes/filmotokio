@@ -1,7 +1,9 @@
 package com.filmotokio.service;
 
+import com.filmotokio.DTO.CastDto;
 import com.filmotokio.model.Cast;
 import com.filmotokio.model.Film;
+import com.filmotokio.model.PersonType;
 import com.filmotokio.repository.CastRepository;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,8 @@ public class CastImpl implements CastInterface{
     }
 
     @Override
-    public Cast save(Cast cast) {
+    public Cast save(CastDto castDto) {
+        Cast cast = new Cast(castDto.getName(),castDto.getSurname(),castDto.getEmail(), PersonType.ACTOR);
         return castRepository.save(cast);
     }
 

@@ -3,9 +3,11 @@ package com.filmotokio.controller;
 import com.filmotokio.DTO.UserDto;
 import com.filmotokio.model.User;
 import com.filmotokio.service.UserImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -31,9 +33,19 @@ public class UserController {
         return "allUsers";
     }
     @PostMapping("save")
-    public String saveUser(UserDto userDto){
+    public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result){
+        System.out.println(userDto.toString());
+        if (!userDto.getPassword().equals(userDto.getPasswordMatch())) {
+            System.out.println("Aqui");
+            result.rejectValue("passwordMatch", null, "As password não coincidem");
+        }
+        if (result.hasErrors()) {
+            System.out.println("erro");
+            return "userAdd";
+        }
         userImpl.save(userDto);
-        return "redirect:/user";
+        System.out.println("salvei");
+        return "userAdd";
     }
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){
