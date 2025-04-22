@@ -14,7 +14,7 @@ public class FilmDto {
 
     private String titulo;
     private Integer ano;
-    private String duracao;
+    private int duracao;
 
     private List<Long> diretoresIds;
     private List<Long> roteiristasIds;
