@@ -24,5 +24,9 @@ public class FilmController {
         model.addAttribute("fotografos", castImpl.findByType("PHOTOGRAPHER"));
         return "filmAdd";
     }
+    @GetMapping("/search")
+    public String filmSaarch(){
+        return "filmSearch";
+    }
 
 }

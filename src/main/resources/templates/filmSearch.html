@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:replace="/fragment/head::head(title='FILMOTOKIO - Procurar Filme')"></div>
+<body>
+    <div th:replace="fragment/navbar"></div>
+    <form class="d-flex col-md-6 offset-3" role="search" style="margin-top:200px">
+        <input class="form-control me-2" type="search" placeholder="Search Film" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</body>

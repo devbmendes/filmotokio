@@ -11,7 +11,7 @@
           <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novo Filme</a>
+          <a class="nav-link" th:href="@{/film}">Novo Filme</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/user}">Criar Utilizador</a>
@@ -19,12 +19,11 @@
         <li class="nav-item">
           <a class="nav-link" th:href="@{/cast}">Criar Elenco</a>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/film/search}">Procurar Filmes</a>
+        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Procurar Filme" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <button class="btn btn-outline-info">Logout</button>
     </div>
   </div>
 </nav>
