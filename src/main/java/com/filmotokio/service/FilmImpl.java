@@ -23,6 +23,8 @@ public class FilmImpl implements FilmeInterface{
     private final String uploadDir = "src/main/resources/static/uploads/film/";
     @Autowired
     private FilmRepository filmRepository;
+    @Autowired
+    private CastImpl castImpl;
 
     @Override
     public List<Film> getAll() {
@@ -35,6 +37,8 @@ public class FilmImpl implements FilmeInterface{
             film.setTitle(filmDto.getTitulo());
             film.setDuration(film.getDuration());
             film.setYear(filmDto.getDuracao());
+        System.out.println(filmDto.getDiretoresIds());
+            //setar os crews em filmes
 
         MultipartFile multipartFile = filmDto.getCartaz();
         if(multipartFile!=null && !multipartFile.isEmpty()){

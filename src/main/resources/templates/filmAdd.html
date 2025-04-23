@@ -23,13 +23,13 @@
     <div class="row mb-3">
       <div class="col">
         <label class="form-label">Diretores</label>
-        <select multiple class="form-select" th:field="*{diretoresIds}">
+        <select class="form-select select2" th:field="*{diretoresIds}" multiple>
           <option th:each="p : ${diretores}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
       </div>
       <div class="col">
         <label class="form-label">Roteiristas</label>
-        <select multiple class="form-select" th:field="*{roteiristasIds}">
+        <select multiple class="form-select select2" th:field="*{roteiristasIds}">
           <option th:each="p : ${roteiristas}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
       </div>
@@ -37,13 +37,13 @@
     <div class="row mb-3">
       <div class="col">
         <label class="form-label">Músicos</label>
-        <select multiple class="form-select" th:field="*{musicosIds}">
+        <select multiple class="form-select select2" th:field="*{musicosIds}">
           <option th:each="p : ${musicos}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
       </div>
       <div class="col">
         <label class="form-label">Atores</label>
-        <select multiple class="form-select" th:field="*{atoresIds}">
+        <select multiple class="form-select select2" th:field="*{atoresIds}">
           <option th:each="p : ${atores}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
       </div>
@@ -71,5 +71,19 @@
     </div>
   </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+      $('.select2').select2({
+          theme: 'bootstrap-5',
+          placeholder: 'Selecione...',
+          allowClear: true,
+          width: '100%'
+      });
+  });
+</script>
 </body>
 </html>
