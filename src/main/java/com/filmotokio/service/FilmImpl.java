@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.rmi.server.UID;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -20,7 +19,8 @@ import java.util.UUID;
 @Service
 public class FilmImpl implements FilmeInterface{
 
-    private final String uploadDir = "src/main/resources/static/uploads/film/";
+    public final String uploadDir = "uploads/film";
+
     @Autowired
     private FilmRepository filmRepository;
     @Autowired
@@ -34,20 +34,21 @@ public class FilmImpl implements FilmeInterface{
     @Override
     public Film save(FilmDto filmDto) throws IOException {
             Film film = new Film();
-            film.setTitle(filmDto.getTitulo());
-            film.setDuration(film.getDuration());
-            film.setYear(filmDto.getDuracao());
-        System.out.println(filmDto.getDiretoresIds());
+            film.setTitle(filmDto.getTitle());
+            film.setDuration(filmDto.getDuration());
+            film.setYear(filmDto.getYear());
+            film.setSynopsis(filmDto.getSynopsis());
+        System.out.println(film.toString());
             //setar os crews em filmes
 
-        MultipartFile multipartFile = filmDto.getCartaz();
+        MultipartFile multipartFile = filmDto.getPoster();
         if(multipartFile!=null && !multipartFile.isEmpty()){
             String fileName = UUID.randomUUID()   + "_" + multipartFile.getOriginalFilename();
             Path url = Paths.get(uploadDir,fileName);
             Files.createDirectories(url.getParent());
             Files.write(url,multipartFile.getBytes());
 
-            film.setPoster(uploadDir + fileName);
+            film.setPoster("/uploads/film/" + fileName);
         }
 
         return filmRepository.save(film);
@@ -61,5 +62,10 @@ public class FilmImpl implements FilmeInterface{
     @Override
     public Boolean deleteById(Long id) {
         return findById(id).isPresent();
+    }
+
+    @Override
+    public List<Film> findByTitleContainingIgnoreCase(String title) {
+        return filmRepository.findByTitleContainingIgnoreCase(title);
     }
 }

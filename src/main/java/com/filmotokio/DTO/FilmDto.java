@@ -1,5 +1,7 @@
 package com.filmotokio.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,9 +14,9 @@ import java.util.List;
 @Data
 public class FilmDto {
 
-    private String titulo;
-    private Integer ano;
-    private int duracao;
+    private String title;
+    private Integer year;
+    private Integer duration;
 
     private List<Long> diretoresIds;
     private List<Long> roteiristasIds;
@@ -22,7 +24,9 @@ public class FilmDto {
     private List<Long> atoresIds;
     private Long fotografoId;
 
-    private String sinopse;
+    @Size(max = 1000)
+    @NotBlank
+    private String synopsis;
 
-    private MultipartFile cartaz;
+    private MultipartFile poster;
 }

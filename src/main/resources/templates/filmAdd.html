@@ -9,15 +9,17 @@
     <div class="row mb-3">
       <div class="col">
         <label for="titulo" class="form-label">Título</label>
-        <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
+        <input type="text" class="form-control" id="titulo" th:field="*{title}" required>
       </div>
       <div class="col">
         <label for="ano" class="form-label">Ano</label>
-        <input type="number" class="form-control" id="ano" th:field="*{ano}" required>
+        <input type="number" class="form-control" id="ano" th:field="*{year}" required
+        placeholder="2025">
       </div>
       <div class="col">
         <label for="duracao" class="form-label">Duração</label>
-        <input type="text" class="form-control" id="duracao" th:field="*{duracao}">
+        <input type="number" class="form-control" id="duracao" th:field="*{duration}" required
+        placeholder="Em minutos">
       </div>
     </div>
     <div class="row mb-3">
@@ -57,12 +59,12 @@
 
     <div class="mb-3">
       <label for="sinopse" class="form-label">Sinopse</label>
-      <textarea class="form-control" id="sinopse" rows="3" th:field="*{sinopse}"></textarea>
+      <textarea class="form-control" id="sinopse" rows="3" th:field="*{synopsis}"></textarea>
     </div>
 
     <div class="mb-3">
       <label for="cartaz" class="form-label">Cartaz</label>
-      <input class="form-control" type="file" id="cartaz" name="cartaz">
+      <input class="form-control" type="file" id="cartaz" name="poster">
     </div>
 
     <div class="d-flex justify-content-between">

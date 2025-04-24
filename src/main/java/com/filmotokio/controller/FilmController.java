@@ -7,13 +7,12 @@ import com.filmotokio.service.FilmImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/film")
@@ -24,6 +23,7 @@ public class FilmController {
 
     @Autowired
     private CastImpl castImpl;
+
     @GetMapping
     public String film(Model model){
         model.addAttribute("film", new FilmDto());
@@ -36,14 +36,21 @@ public class FilmController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute FilmDto filmDto) throws IOException {
+    public String save(FilmDto filmDto) throws IOException {
         filmImpl.save(filmDto);
-        return "redirect:/";
+        return "redirect:/film/search";
     }
 
+
     @GetMapping("/search")
-    public String filmSaarch(){
+    public String listarFilm(Model model) {
+        String path = "http://localhost:8080/uploads/film/";
+        List<Film> film = filmImpl.getAll();
+        System.out.println(film);
+        model.addAttribute("path",path);
+        model.addAttribute("film",film);
         return "filmSearch";
     }
+
 
 }

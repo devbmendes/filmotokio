@@ -13,4 +13,5 @@ public interface FilmeInterface {
     public Film save(FilmDto film) throws IOException;
     public Optional<Film> findById(Long id);
     public Boolean deleteById(Long id);
+    public List<Film> findByTitleContainingIgnoreCase(String title);
 }

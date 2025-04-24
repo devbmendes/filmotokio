@@ -19,8 +19,9 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private int year;
-    private int duration;
+    private Integer year;
+    private Integer duration;
+    @Lob
     private String synopsis;
     private String poster;
 
@@ -38,7 +39,7 @@ public class Film {
     )
     private List<Cast> crew;
 
-    public Film(String title, int year, int duration, String synopsis, String poster, boolean migrate) {
+    public Film(String title, Integer year, Integer duration, String synopsis, String poster, boolean migrate) {
         this.title = title;
         this.year = year;
         this.duration = duration;
