@@ -2,29 +2,38 @@
 <div th:replace="/fragment/head::head(title='FILMOTOKIO - Procurar Filme')"></div>
 <body>
     <div th:replace="fragment/navbar"></div>
-    <form class="d-flex col-md-6 offset-3" role="search" style="margin-top:150px"
-    method="get">
-        <input class="form-control me-2" type="search" placeholder="Procurar por nome"
+    <div class="d-flex col-md-6 offset-3 " style="margin-top:100px">
+        <h3>Procurar Filme</h3>
+    </div>
+    <form class="d-flex col-md-6 offset-3" role="search"
+    method="get" th:action="@{/film/search}">
+        <input class="form-control me-2" type="search" name="title" placeholder="Procurar por nome"
               style="height:50px" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <!-- Lista de filmes -->
-    <div class="col-md-8 offset-2">
+    <div class="col-md-8 offset-2 mb-3" >
         <div th:if="${film.isEmpty()}">
             <p class="text-muted">Nenhum filme encontrado.</p>
         </div>
         <div th:if="${!film.isEmpty()}">
             <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col" th:each="film : ${film}">
+                <div class="col-md-3" th:each="film : ${film}">
                     <div class="card h-100">
-                        <img th:src="@{${film.poster}}" class="card-img-top" alt="Cartaz do filme" th:if="${film.poster != null}">
+                        <img th:src="@{${film.poster}}" class="card-img-top" alt="Cartaz do filme"
+                             th:if="${film.poster != null}"
+                             style="width:100%;height:240px;object-fit:cover;">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${film.title}"></h5>
                             <p class="card-text">
                                 <strong>Ano:</strong> <span th:text="${film.year}"></span><br>
-                                <strong>Duração:</strong> <span th:text="${film.duration}"></span><br>
+                                <strong>Duração:</strong> <span th:text="${film.duration}+ ' minutos'" ></span><br>
                             </p>
-                            <p th:text="${film.synopsis}"><strong>Sinopse:</strong> <span ></span></p>
+                            <p><strong>Sinopse</strong></p>
+                            <p th:text="${film.synopsis}"
+                                style="max-height: 150px;overflow-y: auto;text-overflow: ellipsis;padding-right: 8px;">
+                                <strong>Sinopse:</strong> <span ></span>
+                            </p>
                         </div>
                     </div>
                 </div>

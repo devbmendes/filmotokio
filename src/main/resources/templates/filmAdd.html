@@ -59,7 +59,8 @@
 
     <div class="mb-3">
       <label for="sinopse" class="form-label">Sinopse</label>
-      <textarea class="form-control" id="sinopse" rows="3" th:field="*{synopsis}"></textarea>
+      <textarea class="form-control" id="sinopse" rows="3" th:field="*{synopsis}"
+      style="max-height:200px;overflow-y:auto;resize: vertical;"></textarea>
     </div>
 
     <div class="mb-3">
@@ -68,7 +69,7 @@
     </div>
 
     <div class="d-flex justify-content-between">
-      <button type="submit" style="height" class="btn btn-primary">Registrar Filme</button>
+      <button type="submit" style="height" class="btn btn-success">Registrar Filme</button>
       <a th:href="@{/}" style="height:50px" class="btn btn-secondary">Voltar</a>
     </div>
   </form>

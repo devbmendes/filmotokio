@@ -43,10 +43,15 @@ public class FilmController {
 
 
     @GetMapping("/search")
-    public String listarFilm(Model model) {
+    public String listarFilm(@RequestParam(required = false)String title, Model model) {
         String path = "http://localhost:8080/uploads/film/";
-        List<Film> film = filmImpl.getAll();
-        System.out.println(film);
+        List<Film> film;
+        if (title!= null && !title.isBlank()){
+            film = filmImpl.findByTitleContainingIgnoreCase(title);
+        }else {
+            film = filmImpl.getAll();
+        }
+
         model.addAttribute("path",path);
         model.addAttribute("film",film);
         return "filmSearch";
