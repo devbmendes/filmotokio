@@ -4,9 +4,11 @@ import com.filmotokio.DTO.FilmDto;
 import com.filmotokio.model.Film;
 import com.filmotokio.service.CastImpl;
 import com.filmotokio.service.FilmImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -43,7 +45,9 @@ public class FilmController {
     }
 
     @PostMapping("/save")
-    public String save(FilmDto filmDto) throws IOException {
+    public String save(@ModelAttribute("film") @Valid FilmDto filmDto,
+                       BindingResult result,
+                       Model model) throws IOException {
         filmImpl.save(filmDto);
         return "redirect:/film/search";
     }
