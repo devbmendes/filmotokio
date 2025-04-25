@@ -1,6 +1,7 @@
 package com.filmotokio.service;
 
 import com.filmotokio.DTO.FilmDto;
+import com.filmotokio.model.Cast;
 import com.filmotokio.model.Film;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,6 +28,29 @@ public class FilmImpl implements FilmeInterface{
     @Autowired
     private CastImpl castImpl;
 
+    private List<Long> getAllCastIds(FilmDto filmDto) {
+        List<Long> allCastIds = new ArrayList<>();
+
+        if (filmDto.getDiretoresIds() != null) {
+            allCastIds.addAll(filmDto.getDiretoresIds());
+        }
+        if (filmDto.getRoteiristasIds() != null) {
+            allCastIds.addAll(filmDto.getRoteiristasIds());
+        }
+        if (filmDto.getMusicosIds() != null) {
+            allCastIds.addAll(filmDto.getMusicosIds());
+        }
+        if (filmDto.getAtoresIds() != null) {
+            allCastIds.addAll(filmDto.getAtoresIds());
+        }
+        if (filmDto.getFotografoId() != null) {
+            allCastIds.add(filmDto.getFotografoId());
+        }
+
+        return allCastIds;
+    }
+
+
     @Override
     public List<Film> getAll() {
         return filmRepository.findAll();
@@ -38,8 +63,13 @@ public class FilmImpl implements FilmeInterface{
             film.setDuration(filmDto.getDuration());
             film.setYear(filmDto.getYear());
             film.setSynopsis(filmDto.getSynopsis());
-        System.out.println(film.toString());
-            //setar os crews em filmes
+        List<Long> allCastIds = getAllCastIds(filmDto);
+        System.out.println(allCastIds);
+        List<Cast> elencos = new ArrayList<>();
+        for (Long id : allCastIds) {
+            castImpl.findById(id).ifPresent(elencos::add);
+        }
+    film.setCrew(elencos);
 
         MultipartFile multipartFile = filmDto.getPoster();
         if(multipartFile!=null && !multipartFile.isEmpty()){
@@ -50,7 +80,7 @@ public class FilmImpl implements FilmeInterface{
 
             film.setPoster("/uploads/film/" + fileName);
         }
-
+        System.out.println(film.toString());
         return filmRepository.save(film);
     }
 

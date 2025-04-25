@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/film")
@@ -33,6 +34,12 @@ public class FilmController {
         model.addAttribute("atores", castImpl.findByType("ACTOR"));
         model.addAttribute("fotografos", castImpl.findByType("PHOTOGRAPHER"));
         return "filmAdd";
+    }
+    @GetMapping("/{id}")
+    public String getById(@PathVariable Long id,Model model){
+        Film film = filmImpl.findById(id).orElse(null);
+        model.addAttribute("film",film);
+        return "filmID";
     }
 
     @PostMapping("/save")
