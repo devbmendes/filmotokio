@@ -14,6 +14,7 @@ import java.util.List;
 public class FilmDto {
 
     @NotBlank(message = "O título é obrigatório")
+    @Size(min = 3, message = "Titulo muito curto")
     private String title;
 
     @NotNull(message = "O ano é obrigatório")

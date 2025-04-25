@@ -9,63 +9,81 @@
     <div class="row mb-3">
       <div class="col">
         <label for="titulo" class="form-label">Título</label>
-        <input type="text" class="form-control" id="titulo" th:field="*{title}" required>
+        <input type="text" class="form-control" id="titulo" th:field="*{title}"
+               th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'" >
+        <div class="invalid-feedback" th:errors="*{title}"></div>
       </div>
       <div class="col">
         <label for="ano" class="form-label">Ano</label>
-        <input type="number" class="form-control" id="ano" th:field="*{year}" required
-        placeholder="2025">
+        <input type="number" class="form-control" id="ano" th:field="*{year}"
+               th:classappend="${#fields.hasErrors('year')} ? 'is-invalid'" placeholder="2025" required>
+        <div class="invalid-feedback" th:errors="*{year}"></div>
       </div>
       <div class="col">
         <label for="duracao" class="form-label">Duração</label>
-        <input type="number" class="form-control" id="duracao" th:field="*{duration}" required
-        placeholder="Em minutos">
+        <input type="number" class="form-control" id="duracao" th:field="*{duration}"
+               th:classappend="${#fields.hasErrors('duration')} ? 'is-invalid'" placeholder="Em minutos" required>
+        <div class="invalid-feedback" th:errors="*{duration}"></div>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
         <label class="form-label">Diretores</label>
-        <select class="form-select select2" th:field="*{diretoresIds}" multiple>
+        <select class="form-select select2" th:field="*{diretoresIds}"
+                th:classappend="${#fields.hasErrors('diretoresIds')} ? 'is-invalid'" multiple>
           <option th:each="p : ${diretores}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
+        <div class="invalid-feedback" th:errors="*{diretoresIds}"></div>
       </div>
       <div class="col">
         <label class="form-label">Roteiristas</label>
-        <select multiple class="form-select select2" th:field="*{roteiristasIds}">
+        <select multiple class="form-select select2" th:field="*{roteiristasIds}"
+                th:classappend="${#fields.hasErrors('roteiristasIds')} ? 'is-invalid'">
           <option th:each="p : ${roteiristas}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
+        <div class="invalid-feedback" th:errors="*{roteiristasIds}"></div>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
         <label class="form-label">Músicos</label>
-        <select multiple class="form-select select2" th:field="*{musicosIds}">
+        <select multiple class="form-select select2" th:field="*{musicosIds}"
+                th:classappend="${#fields.hasErrors('musicosIds')} ? 'is-invalid'">
           <option th:each="p : ${musicos}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
+        <div class="invalid-feedback" th:errors="*{musicosIds}"></div>
       </div>
       <div class="col">
         <label class="form-label">Atores</label>
-        <select multiple class="form-select select2" th:field="*{atoresIds}">
+        <select multiple class="form-select select2" th:field="*{atoresIds}"
+                th:classappend="${#fields.hasErrors('atoresIds')} ? 'is-invalid'">
           <option th:each="p : ${atores}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
+        <div class="invalid-feedback" th:errors="*{atoresIds}"></div>
       </div>
       <div class="col">
         <label class="form-label">Fotógrafo</label>
-        <select class="form-select" th:field="*{fotografoId}">
-          <option th:each="p : ${fotografos}" th:value="${p.id}" th:text="${p.name}"></option>
+        <select class="form-select" th:field="*{fotografoId}"
+                th:classappend="${#fields.hasErrors('fotografoId')} ? 'is-invalid'">
+          <option th:each="p : ${fotografo}" th:value="${p.id}" th:text="${p.name}"></option>
         </select>
+        <div class="invalid-feedback" th:errors="*{fotografoId}"></div>
       </div>
     </div>
 
     <div class="mb-3">
       <label for="sinopse" class="form-label">Sinopse</label>
       <textarea class="form-control" id="sinopse" rows="3" th:field="*{synopsis}"
-      style="max-height:200px;overflow-y:auto;resize: vertical;"></textarea>
+                th:classappend="${#fields.hasErrors('synopsis')} ? 'is-invalid'"
+                style="max-height:200px;overflow-y:auto;resize: vertical;"></textarea>
+      <div class="invalid-feedback" th:errors="*{synopsis}"></div>
     </div>
 
     <div class="mb-3">
       <label for="cartaz" class="form-label">Cartaz</label>
-      <input class="form-control" type="file" id="cartaz" name="poster">
+      <input class="form-control" type="file" id="cartaz" th:field="*{poster}"
+             th:classappend="${#fields.hasErrors('poster')} ? 'is-invalid'" required>
+      <div class="invalid-feedback" th:errors="*{poster}"></div>
     </div>
 
     <div class="d-flex justify-content-between">

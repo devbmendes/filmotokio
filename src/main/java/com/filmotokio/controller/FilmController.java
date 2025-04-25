@@ -45,9 +45,16 @@ public class FilmController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("film") @Valid FilmDto filmDto,
-                       BindingResult result,
+    public String save(@ModelAttribute("film") @Valid FilmDto filmDto, BindingResult result,
                        Model model) throws IOException {
+        if (result.hasErrors()){
+            model.addAttribute("diretores", castImpl.findByType("DIRECTOR"));
+            model.addAttribute("roteiristas", castImpl.findByType("WRITER"));
+            model.addAttribute("musicos", castImpl.findByType("MUSICIAN"));
+            model.addAttribute("atores", castImpl.findByType("ACTOR"));
+            model.addAttribute("fotografos", castImpl.findByType("PHOTOGRAPHER"));
+            return "filmAdd";
+        }
         filmImpl.save(filmDto);
         return "redirect:/film/search";
     }
