@@ -8,7 +8,7 @@
         <div style="margin-bottom:30px">
           <h3>Registar Elenco</h3>
         </div>
-        <form th:action="@{''}" method="post" th:object="${cast}">
+        <form th:action="@{/cast/save}" method="post" th:object="${cast}">
           <div class="row">
             <div class="col-md-6 mb-3">
               <input type="text" class="form-control " id="firstName" placeholder="First Name"
@@ -30,13 +30,14 @@
                      th:field="*{birthDate}" style="height:50px">
             </div>
             <div class="col-md-6 mb-3">
-              <select class="form-select" aria-label="Default select example" style="height:50px">
-                <option selected>Cast Type</option>
-                <option value="">DIRECTOR</option>
-                <option value="">WRITER</option>
-                <option value="">MUSICIAN</option>
-                <option value="">PHOTOGRAPHER</option>
-                <option>ACTOR</option>
+              <select class="form-select" aria-label="Default select example" style="height:50px"
+              th:field="*{type}">
+                <option value="" disabled selected>Cast Type</option>
+                <option th:value="DIRECTOR">DIRECTOR</option>
+                <option th:value="WRITER">WRITER</option>
+                <option th:value="MUSICIAN">MUSICIAN</option>
+                <option th:value="PHOTOGRAPHER">PHOTOGRAPHER</option>
+                <option th:value="ACTOR">ACTOR</option>
               </select>
             </div>
           </div>
@@ -48,7 +49,6 @@
               <button class="btn btn-info" style="width:100%;height:50px">Clean</button>
             </div>
           </div>
-
         </form>
       </div>
     </div>
