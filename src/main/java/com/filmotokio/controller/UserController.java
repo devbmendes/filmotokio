@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,20 +33,20 @@ public class UserController {
         model.addAttribute("allUsers",users);
         return "allUsers";
     }
-    @PostMapping("save")
-    public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result){
-        System.out.println(userDto.toString());
-        if (!userDto.getPassword().equals(userDto.getPasswordMatch())) {
-            System.out.println("Aqui");
-            result.rejectValue("passwordMatch", null, "As password não coincidem");
+    @PostMapping("/save")
+    public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result) throws IOException {
+        System.out.println("ENTREI");
+
+        if(result.hasErrors()){
+            return "userAdd";
         }
-        if (result.hasErrors()) {
-            System.out.println("erro");
+        if (!userDto.getPassword().equals(userDto.getPasswordMatch())) {
+            result.rejectValue("passwordMatch", null, "As password não coincidem");
             return "userAdd";
         }
         userImpl.save(userDto);
-        System.out.println("salvei");
-        return "userAdd";
+
+        return "redirect:/";
     }
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id){

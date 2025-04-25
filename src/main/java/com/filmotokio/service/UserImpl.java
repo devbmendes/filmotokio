@@ -31,7 +31,6 @@ public class UserImpl implements UserInterface{
             user.setBirthDate(userDto.getBirthDate());
             user.setRegistrationDate(new Date());
             user.setPassword(userDto.getPassword());
-            user.setImage(userDto.getImage());
             return userRepository.save(user);
         }else{
             return new User();

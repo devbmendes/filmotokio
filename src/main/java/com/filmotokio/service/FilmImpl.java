@@ -64,7 +64,6 @@ public class FilmImpl implements FilmeInterface{
             film.setYear(filmDto.getYear());
             film.setSynopsis(filmDto.getSynopsis());
         List<Long> allCastIds = getAllCastIds(filmDto);
-        System.out.println(allCastIds);
         List<Cast> elencos = new ArrayList<>();
         for (Long id : allCastIds) {
             castImpl.findById(id).ifPresent(elencos::add);
