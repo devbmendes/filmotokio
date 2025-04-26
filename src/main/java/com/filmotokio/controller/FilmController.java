@@ -39,8 +39,12 @@ public class FilmController {
     }
     @GetMapping("/{id}")
     public String getById(@PathVariable Long id,Model model){
-        Film film = filmImpl.findById(id).orElse(null);
-        model.addAttribute("film",film);
+        Optional<Film> film = filmImpl.findById(id);
+        if (film.isPresent()){
+            model.addAttribute("film",film.get());
+        }else{
+            model.addAttribute("errorMessage","Filme não encontrado");
+        }
         return "filmID";
     }
 

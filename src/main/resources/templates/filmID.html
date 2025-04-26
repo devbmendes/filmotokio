@@ -5,8 +5,15 @@
 
 <body class="bg-light">
 <div th:replace="~{fragment/navbar}"></div>
+<div class="container" th:classappend="${errorMessage} ? 'height_view'">
+  <div th:if="${errorMessage}" class="alert alert-danger custom-error">
+    <div class="error-icon">❌</div>
+    <p th:text="${errorMessage}"></p>
+  </div>
+  <a th:href="@{/film/search}" class="btn-back-simple">Voltar para a lista</a>
+</div>
 <div class="container" style="margin-top:130px">
-  <div class="row">
+  <div class="row" th:if="${film}">
     <div class="col-md-8 offset-2">
       <!-- Imagem Principal -->
       <div class="row mb-2">

@@ -27,18 +27,14 @@ public class CastController {
     @PostMapping("/save")
     public String save(@ModelAttribute("cast") @Valid CastDto castDto,
                        BindingResult result,Model model){
-        System.out.println("Entrei");
         if (result.hasErrors()){
-            System.out.println("ERRO");
             return "castAdd";
         }
         if (castImpl.findByEmail(castDto.getEmail())){
-            System.out.println("EMAIL");
             result.rejectValue("email", "error.cast", "E-mail já existente!");
             return "castAdd";
         }
         castImpl.save(castDto);
-        System.out.println("salvei");
         return "redirect:/cast";
     }
 }

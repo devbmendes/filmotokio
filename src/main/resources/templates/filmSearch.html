@@ -13,8 +13,12 @@
     </form>
     <!-- Lista de filmes -->
     <div class="col-md-8 offset-2 mb-3" >
-        <div th:if="${film.isEmpty()}">
-            <p class="text-muted">Nenhum filme encontrado.</p>
+        <div class="container" th:classappend="${errorMessage} ? 'height_view'">
+            <div th:if="${film.isEmpty()}" class="alert alert-danger custom-error">
+                <div class="error-icon">❌</div>
+                <p >Filme não encontrado</p>
+            </div>
+            <a th:href="@{/film/search}" class="btn-back-simple">Voltar para a lista</a>
         </div>
         <div th:if="${!film.isEmpty()}">
             <div class="container py-5">
@@ -36,5 +40,10 @@
             </div>
         </div>
     </div>
+<div class="container">
+    <div class="row">
+        <div th:replace="~{fragment/footer}"></div>
+    </div>
+</div>
 
 </body>

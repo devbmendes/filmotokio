@@ -34,8 +34,8 @@
             <div class="col-md-6 mb-3">
               <input type="date" class="form-control " id="date" placeholder="Birthday"
                      th:field="*{birthDate}" style="height:50px"
-                     th:classappend="${#fields.hasErrors('birthDay')} ? 'is-invalid'">
-              <div class="invalid-feedback" th:errors="*{birthDay}"></div>
+                     th:classappend="${#fields.hasErrors('birthDate')} ? 'is-invalid'">
+              <div class="invalid-feedback" th:errors="*{birthDate}"></div>
             </div>
             <div class="col-md-6 mb-3">
               <select class="form-select" aria-label="Default select example" style="height:50px"

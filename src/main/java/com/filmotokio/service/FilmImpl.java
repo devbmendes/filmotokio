@@ -85,7 +85,8 @@ public class FilmImpl implements FilmeInterface{
 
     @Override
     public Optional<Film> findById(Long id) {
-        return Optional.of(filmRepository.findById(id).orElseThrow());
+
+        return filmRepository.findById(id);
     }
 
     @Override
