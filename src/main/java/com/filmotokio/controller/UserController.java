@@ -30,8 +30,8 @@ public class UserController {
     @GetMapping("/all")
     public String getAll(Model model){
         List<User> users = userImpl.getAll();
-        model.addAttribute("allUsers",users);
-        return "allUsers";
+        model.addAttribute("user",users);
+        return "userList";
     }
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result) throws IOException {
@@ -51,11 +51,11 @@ public class UserController {
         userImpl.deleteById(id);
         return "redirect:/user/all";
     }
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public String getById(@PathVariable Long id,Model model){
         Optional<User> user = userImpl.findById(id);
-        model.addAttribute("user",user);
-        return "singleUser";
+        user.ifPresent(value -> model.addAttribute("user", value));
+        return "userDetail";
     }
 
 }

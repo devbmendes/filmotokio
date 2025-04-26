@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/fragment/head::head(title='FILMOTOKIO - Detalhes de Utilizador')}">
+</head>
+<body class="bg-dark text-light min-vh-100 d-flex flex-column justify-content-center align-items-center p-4">
+
+<div class="card text-center p-4 user-card">
+  <div class="card-body">
+    <img th:src="${user.image}" alt="Foto do Usuário" class="rounded-circle mb-4 user-photo">
+
+    <h2 class="neon-text mb-3" th:text="${user.name + ' ' + user.surname}">Nome Completo</h2>
+
+    <p><strong>Email:</strong> <span th:text="${user.email}">email@example.com</span></p>
+    <p><strong>Data de Nascimento:</strong> <span th:text="${user.birthDate}">01/01/2000</span></p>
+    <p><strong>Tipo de Usuário:</strong> <span th:text="${user.role}">USER</span></p>
+
+    <a th:href="@{/user/all}" class="btn btn-outline-info mt-4">Voltar</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.bg-dark {
+    background: linear-gradient(to right, #141e30, #243b55)
+}
+
+.neon-title {
+    color: #00e5ff;
+    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;
+}
+
+.user-item {
+    background-color: #1a1a1a !important;
+    border: 1px solid #00e5ff33;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.user-item:hover {
+    background-color: #292929 !important;
+    border-color: #00f0ff;
+    box-shadow: 0 0 15px #00f0ff55;
+}
+
+.btn-outline-info {
+    border-color: #00e5ff;
+    color: #00e5ff;
+}
+
+.btn-outline-info:hover {
+    background-color: #00e5ff;
+    color: #0D0D0D;
+}
+
+.btn-outline-warning {
+    border-color: #ffcc00;
+    color: #ffcc00;
+}
+
+.btn-outline-warning:hover {
+    background-color: #ffcc00;
+    color: #0D0D0D;
+}
+
+.btn-outline-danger {
+    border-color: #ff4c4c;
+    color: #ff4c4c;
+}
+
+.btn-outline-danger:hover {
+    background-color: #ff4c4c;
+    color: #0D0D0D;
+}
