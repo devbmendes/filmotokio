@@ -43,7 +43,13 @@ public class UserImpl implements UserInterface{
     }
 
     @Override
-    public Boolean deleteById(Long id) {
-        return findById(id).isPresent();
+    public Boolean deleteById(Long id)
+    {
+        if (findById(id).isPresent()){
+            userRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
     }
 }

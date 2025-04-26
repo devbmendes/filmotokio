@@ -1,0 +1,104 @@
+/* === Estilo Base Filmotokio === */
+
+/* Fundo padrão */
+.body_general {
+    background: linear-gradient(to right, #141e30, #243b55);
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(20, 30, 48, 0.9); /* semi-transparente para efeito mais moderno */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.navbar a {
+    color: #00d4ff !important; /* azul neon claro */
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #00ffaa !important; /* efeito hover verde-água neon */
+}
+
+/* Container */
+.container {
+    margin-top: 20px;
+}
+
+/* Lista de usuários */
+.user-card {
+    background: #111;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    box-shadow: 0 0 10px #00d4ff30;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botões */
+.btn-custom {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Botões Ver */
+.btn-view {
+    background-color: #00d4ff;
+    color: #000;
+}
+
+.btn-view:hover {
+    background-color: #00a3cc;
+}
+
+/* Botões Atualizar */
+.btn-update {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-update:hover {
+    background-color: #e0a800;
+}
+
+/* Botões Deletar */
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+/* Alertas (erros, mensagens) */
+.alert-custom {
+    background: #ff4d4d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Transição global */
+a, button {
+    transition: all 0.3s ease-in-out;
+}
