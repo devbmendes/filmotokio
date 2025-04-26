@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:replace="/fragment/head::head(title='FILMOTOKIO - Procurar Filme')"></div>
+<div th:replace="~{/fragment/head::head(title='FILMOTOKIO - Procurar Filme')}"></div>
 <body>
-    <div th:replace="fragment/navbar"></div>
+    <div th:replace="~{fragment/navbar}"></div>
     <div class="d-flex col-md-6 offset-3 " style="margin-top:100px">
         <h3>Procurar Filme</h3>
     </div>

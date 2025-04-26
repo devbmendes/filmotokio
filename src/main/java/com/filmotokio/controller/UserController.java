@@ -35,8 +35,6 @@ public class UserController {
     }
     @PostMapping("/save")
     public String saveUser(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result) throws IOException {
-        System.out.println("ENTREI");
-
         if(result.hasErrors()){
             return "userAdd";
         }

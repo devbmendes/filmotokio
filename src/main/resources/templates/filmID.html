@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragment/head::head(title='FILMOTOKIO - Detalhes de Filme')"></head>
+<head th:replace="~{fragment/head::head(title='FILMOTOKIO - Detalhes de Filme')}"></head>
 
 
 <body class="bg-light">
-<div th:replace="fragment/navbar"></div>
+<div th:replace="~{fragment/navbar}"></div>
 <div class="container" style="margin-top:130px">
   <div class="row">
     <div class="col-md-8 offset-2">
@@ -25,7 +25,7 @@
       </div>
     </div>
   </div>
-  <div th:replace="fragment/footer"></div>
+  <div th:replace="~{fragment/footer}"></div>
 </div>
 
 </body>

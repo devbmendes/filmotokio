@@ -1,8 +1,8 @@
 <html lang="" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:replace="fragment/head::head(title='FILMETOKIO - Adicionar Filme')">
+<div th:replace="~{fragment/head::head(title='FILMETOKIO - Adicionar Filme')}">
 </div>
 <body>
-<div th:replace="fragment/navbar"></div>
+<div th:replace="~{fragment/navbar}"></div>
 <div class="container " style="margin-top:130px">
   <h3>Registrar Filme</h3>
   <form th:action="@{/film/save}" method="post" enctype="multipart/form-data" th:object="${film}">
