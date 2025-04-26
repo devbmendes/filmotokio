@@ -24,7 +24,7 @@ public class CastImpl implements CastInterface{
 
     @Override
     public Cast save(CastDto castDto) {
-        Cast cast = new Cast(castDto.getName(),castDto.getSurname(),castDto.getEmail(), PersonType.ACTOR);
+        Cast cast = new Cast(castDto.getName(),castDto.getSurname(),castDto.getEmail(), PersonType.valueOf(castDto.getType()));
         return castRepository.save(cast);
     }
 
@@ -42,5 +42,10 @@ public class CastImpl implements CastInterface{
     public List<Cast> findByType(String type) {
         PersonType personType = PersonType.valueOf(type.toUpperCase());
         return castRepository.findByType(personType);
+    }
+
+    @Override
+    public boolean findByEmail(String email) {
+        return (castRepository.findByEmailIgnoreCase(email).isPresent());
     }
 }

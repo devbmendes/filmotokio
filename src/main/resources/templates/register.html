@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{/fragment/head::head(title='FILMETOKIO - Register')}"></head>
+<body class="login-page">
+<div class="login-wrapper">
+    <img th:src="@{/images/logoFilmo.png}" alt="Filmotokio Logo" class="login-logo">
+
+    <form th:action="@{/user/save}" method="post" class="login-form">
+        <input type="text" name="username" placeholder="Email ou usuário" required>
+        <input type="password" name="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+</div>
+</body>
+</html>

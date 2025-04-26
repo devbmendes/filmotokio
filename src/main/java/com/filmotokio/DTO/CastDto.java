@@ -19,8 +19,8 @@ public class CastDto {
         @NotBlank(message = "Apelido é obrigatório")
         private String surname;
 
-        @Email(message = "Email inválido")
-        @NotBlank(message = "Email é obrigatório")
+        @NotBlank(message = "E-mail é obrigatório.")
+        @Email(message = "Formato de e-mail inválido.")
         private String email;
 
         @DateTimeFormat(pattern = "yyyy-MM-dd")

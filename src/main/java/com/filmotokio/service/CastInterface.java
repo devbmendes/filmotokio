@@ -13,4 +13,5 @@ public interface CastInterface {
     public Optional<Cast> findById(Long id);
     public Boolean deleteById(Long id);
     public List<Cast> findByType(String type);
+    public boolean findByEmail(String email);
 }

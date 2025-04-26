@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Cast extends Person{
 
     @Id

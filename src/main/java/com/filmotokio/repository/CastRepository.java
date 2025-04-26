@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CastRepository extends JpaRepository<Cast,Long> {
 
-    public List<Cast> findByType(PersonType type);
+    List<Cast> findByType(PersonType type);
+    Optional<Cast> findByEmailIgnoreCase(String email);
 }

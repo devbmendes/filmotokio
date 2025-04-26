@@ -12,22 +12,30 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <input type="text" class="form-control " id="firstName" placeholder="First Name"
-                     th:field="*{name}" style="height:50px">
+                     th:field="*{name}" style="height:50px"
+                     th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'">
+              <div class="invalid-feedback" th:errors="*{name}"></div>
             </div>
             <div class="col-md-6 mb-3">
               <input type="text" class="form-control " id="LastName" placeholder="Last Name"
-                     th:field="*{surname}" style="height:50px">
+                     th:field="*{surname}" style="height:50px"
+                     th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid'">
+              <div class="invalid-feedback" th:errors="*{surname}"></div>
             </div>
           </div>
 
           <div class="mb-3">
             <input type="text" class="form-control " id="email" placeholder="example@gmail.com"
-                   th:field="*{email}" style="height:50px">
+                   th:field="*{email}" style="height:50px"
+                   th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'">
+            <div class="invalid-feedback" th:errors="*{email}"></div>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <input type="date" class="form-control " id="date" placeholder="Birthday"
-                     th:field="*{birthDate}" style="height:50px">
+                     th:field="*{birthDate}" style="height:50px"
+                     th:classappend="${#fields.hasErrors('birthDay')} ? 'is-invalid'">
+              <div class="invalid-feedback" th:errors="*{birthDay}"></div>
             </div>
             <div class="col-md-6 mb-3">
               <select class="form-select" aria-label="Default select example" style="height:50px"
@@ -40,6 +48,9 @@
                 <option th:value="ACTOR">ACTOR</option>
               </select>
             </div>
+          </div>
+          <div class="mb-3">
+            <input class="form-control" type="file" id="cartaz" style="height:50px">
           </div>
           <div class="row">
             <div class="col-md-8 mb-3">
