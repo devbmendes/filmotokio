@@ -13,8 +13,9 @@
     </form>
     <!-- Lista de filmes -->
     <div class="col-md-8 offset-2 mb-3" >
-        <div class="container" th:classappend="${errorMessage} ? 'height_view'">
-            <div th:if="${film.isEmpty()}" class="alert alert-danger custom-error">
+        <div class="container" th:classappend="${errorMessage} ? 'height_view'"
+             th:if="${film.isEmpty()}">
+            <div  class="alert alert-danger custom-error">
                 <div class="error-icon">❌</div>
                 <p >Filme não encontrado</p>
             </div>

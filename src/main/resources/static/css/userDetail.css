@@ -1,43 +1,29 @@
-.bg-gradient {
-    background: linear-gradient(to right, #141e30, #243b55);
-}
-
-.user-card {
-    background-color: #1a1a1a;
-    border: 1px solid #00e5ff33;
-    box-shadow: 0 0 15px #00e5ff55;
-    border-radius: 16px;
-    max-width: 500px;
+.input_user{
     width: 100%;
-    padding: 30px;
-    transition: all 0.3s ease;
+        padding: 12px;
+        margin-bottom: 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: #fff;
+        font-weight: 300;
+}
+.input_user::placeholder {
+               color: #ccc;
+               font-weight: 200;
+           }
+.input_user button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.user-card:hover {
-    box-shadow: 0 0 25px #00f0ff77;
-}
-
-.user-photo {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border: 3px solid #00e5ff;
-    padding: 3px;
-    background-color: #0D0D0D;
-}
-
-.neon-text {
-    color: #00e5ff;
-    text-shadow: 0 0 5px #00e5ff, 0 0 10px #00e5ff;
-}
-
-.btn-outline-info {
-    border-color: #00e5ff;
-    color: #00e5ff;
-    transition: all 0.3s ease;
-}
-
-.btn-outline-info:hover {
-    background-color: #00e5ff;
-    color: #0D0D0D;
+.input_user button:hover {
+    background-color: #0056b3;
 }
