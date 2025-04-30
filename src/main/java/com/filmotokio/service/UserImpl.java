@@ -2,6 +2,7 @@ package com.filmotokio.service;
 
 import com.filmotokio.DTO.UserDto;
 import com.filmotokio.model.User;
+import com.filmotokio.model.UserRole;
 import com.filmotokio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,11 @@ public class UserImpl implements UserInterface{
             user.setSurname(userDto.getSurname());
             user.setEmail(userDto.getEmail());
             user.setBirthDate(userDto.getBirthDate());
+            if(userDto.getUserType().equalsIgnoreCase("ADMIN")){
+                user.setRole(UserRole.ADMIN);
+            }else {
+                user.setRole(UserRole.USER);
+            }
             user.setRegistrationDate(new Date());
             user.setPassword(userDto.getPassword());
             return userRepository.save(user);

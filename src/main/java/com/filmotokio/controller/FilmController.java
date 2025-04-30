@@ -78,6 +78,10 @@ public class FilmController {
         model.addAttribute("film",film);
         return "filmSearch";
     }
+    @PostMapping("/update/{id}")
+    public String update(FilmDto filmDto,@PathVariable Long id){
+        return "redirect:/film/search";
+    }
 
 
 }

@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:replace="~{fragment/head::head(title='FILMOTOKIO - Detalhes de Filme')}"></head>
 
 
 <body class="bg-light">
-<div th:replace="~{fragment/navbar}"></div>
-<div class="container" th:classappend="${errorMessage} ? 'height_view'">
-  <div th:if="${errorMessage}" class="alert alert-danger custom-error">
-    <div class="error-icon">❌</div>
-    <p th:text="${errorMessage}"></p>
-  </div>
-  <a th:href="@{/film/search}" class="btn-back-simple">Voltar para a lista</a>
-</div>
-<div class="container" style="margin-top:130px">
-  <div class="row" th:if="${film}">
-    <div class="col-md-8 offset-2">
-      <!-- Imagem Principal -->
-      <div class="row mb-2">
-        <div class="col-12">
-          <img th:src="${film.poster}" class="filme-banner rounded shadow" alt="Capa do Filme">
-        </div>
-      </div>
-      <!-- Informações do Filme -->
-      <div class="row">
-        <div class="filme-info">
-          <h1 class="mb-3" th:text="${film.title}"></h1>
-          <p><strong>Ano de Lançamento:</strong> <span th:text="${film.year}">01/01/2025</span></p>
-          <hr>
-          <p th:text="${film.synopsis}"></p>
-        </div>
-      </div>
+  <div th:replace="~{fragment/navbar}"></div>
+  <div class="container" th:classappend="${errorMessage} ? 'height_view'">
+    <div th:if="${errorMessage}" class="alert alert-danger custom-error">
+      <div class="error-icon">❌</div>
+      <p th:text="${errorMessage}"></p>
     </div>
   </div>
-  <div th:replace="~{fragment/footer}"></div>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img th:src="${film.poster}" alt="Capa do Filme" class="film-image">
+      </div>
+      <div class="col-md-4 text-white">
+        <p th:text="${film.title}">Título do Filme</p>
+        <p><strong>Ano:</strong> <span class="" th:text="${film.year}">2023</span></p>
+        <p><strong>Diretores:</strong> <span th:text="${film.title}">Nome dos Diretores</span></p>
+        <p><strong>Atores:</strong> <span th:text="${film.title}">Nome dos Atores</span></p>
+        <p><strong>Músicos:</strong> <span th:text="${film.title}">Nome dos Músicos</span></p>
+        <p style="text-align:justify"><strong>Sinopse:</strong> <span th:text="${film.synopsis}"></span></p>
+
+      </div>
+      <div class="col-md-4">
+        <form th:action="@{/review/save}" method="post" class="text-white">
+          <input type="hidden" th:name="filmId" th:value="${film.id}"/>
+          <label for="rating">Classificar :</label>
+          <div class="rating mb-3">
+            <th:block th:each="i : ${#numbers.sequence(10, 1)}">
+              <input type="radio" th:id="'star' + ${i}" name="rating" th:value="${i}"/>
+              <label th:for="'star' + ${i}" th:title="${i} + ' estrelas'">★</label>
+            </th:block>
+          </div>
+
+          <br>
+          <label for="critica">Sua Crítica:</label>
+          <textarea id="critica" name="comment" rows="8" class="input_user mt-2" placeholder="Escreva aqui sua opinião sobre o filme..."></textarea>
+          <button type="submit" class="btn btn-outline-light mt-3" style="transition: 0.3s;
+            width:100%;padding:12px">Enviar Crítica</button>
+        </form>
+      </div>
+    </div>
+    <div th:replace="~{fragment/footer}"></div>
+  </div>
 
 </body>
 </html>

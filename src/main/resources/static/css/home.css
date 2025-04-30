@@ -1,9 +1,10 @@
-.body_home{
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(to right, #141e30, #243b55);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
+body{
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(to right, #141e30, #243b55);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        margin-top:130px!important;
 }
 
 .main-container {

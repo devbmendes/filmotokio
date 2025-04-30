@@ -14,4 +14,5 @@ public interface FilmeInterface {
     public Optional<Film> findById(Long id);
     public Boolean deleteById(Long id);
     public List<Film> findByTitleContainingIgnoreCase(String title);
+    public Film update(Long id,FilmDto filmDto);
 }

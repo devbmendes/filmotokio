@@ -2,14 +2,11 @@
 <div th:replace="~{/fragment/head::head(title='FILMOTOKIO - Procurar Filme')}"></div>
 <body>
     <div th:replace="~{fragment/navbar}"></div>
-    <div class="d-flex col-md-6 offset-3 " style="margin-top:100px">
-        <h3>Procurar Filme</h3>
-    </div>
     <form class="d-flex col-md-6 offset-3" role="search"
     method="get" th:action="@{/film/search}">
-        <input class="form-control me-2" type="search" name="title" placeholder="Procurar por nome"
-              style="height:50px" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="input_user me-2" type="search" name="title" placeholder="Procurar por nome"
+               aria-label="Search">
+        <button class="btn btn-outline-success" style="height:50px" type="submit">Search</button>
     </form>
     <!-- Lista de filmes -->
     <div class="col-md-8 offset-2 mb-3" >
@@ -22,8 +19,8 @@
             <a th:href="@{/film/search}" class="btn-back-simple">Voltar para a lista</a>
         </div>
         <div th:if="${!film.isEmpty()}">
-            <div class="container py-5">
-                <h2 class="mb-4 fw-bold" style="border-left: 5px solid #ffc107; padding-left: 10px;">Em cartaz</h2>
+            <div class="container py-5 text-white">
+                <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;">Em cartaz</h3>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
                         <div class="col" th:each="film : ${film}">
                             <a th:href="@{/film/{id}(id=${film.id})}" style="text-decoration:none">

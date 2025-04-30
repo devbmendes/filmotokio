@@ -98,4 +98,19 @@ public class FilmImpl implements FilmeInterface{
     public List<Film> findByTitleContainingIgnoreCase(String title) {
         return filmRepository.findByTitleContainingIgnoreCase(title);
     }
+
+    @Override
+    public Film update(Long id, FilmDto filmDto) {
+        Optional<Film> film = filmRepository.findById(id);
+        if (film.isPresent()){
+            film.get().setTitle(filmDto.getTitle());
+            film.get().setSynopsis(filmDto.getSynopsis());
+            film.get().setTitle(filmDto.getTitle());
+            film.get().setDuration(filmDto.getDuration());
+            return filmRepository.save(film.get());
+        }else {
+            return new Film();
+        }
+
+    }
 }
