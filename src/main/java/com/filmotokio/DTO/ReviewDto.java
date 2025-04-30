@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ReviewDto {
     private Long filmId;
-    private Long userid;
-    private String review;
+    private Long userId;
+    private String filmReview;
+    private Integer rating;
 }

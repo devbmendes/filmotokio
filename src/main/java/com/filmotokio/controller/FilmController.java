@@ -1,6 +1,7 @@
 package com.filmotokio.controller;
 
 import com.filmotokio.DTO.FilmDto;
+import com.filmotokio.DTO.ReviewDto;
 import com.filmotokio.model.Film;
 import com.filmotokio.service.CastImpl;
 import com.filmotokio.service.FilmImpl;
@@ -42,6 +43,7 @@ public class FilmController {
         Optional<Film> film = filmImpl.findById(id);
         if (film.isPresent()){
             model.addAttribute("film",film.get());
+            model.addAttribute("review",new ReviewDto());
         }else{
             model.addAttribute("errorMessage","Filme não encontrado");
         }
@@ -76,10 +78,16 @@ public class FilmController {
 
         model.addAttribute("path",path);
         model.addAttribute("film",film);
+
         return "filmSearch";
     }
     @PostMapping("/update/{id}")
     public String update(FilmDto filmDto,@PathVariable Long id){
+        return "redirect:/film/search";
+    }
+    @PostMapping("/review/save")
+    public String addReview(@ModelAttribute("review")ReviewDto reviewDto){
+        System.out.println(reviewDto);
         return "redirect:/film/search";
     }
 
