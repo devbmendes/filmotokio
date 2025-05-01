@@ -17,7 +17,6 @@
 }
 
 .navbar a {
-    color: #00d4ff !important; /* azul neon claro */
     transition: color 0.3s ease;
 }
 
@@ -82,7 +81,7 @@
 }
 
 /* Títulos */
-h1, h2, h3 {
+h1, h2 {
     text-align: center;
     margin-bottom: 30px;
     font-weight: bold;

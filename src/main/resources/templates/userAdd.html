@@ -8,7 +8,7 @@
                 <div style="margin-bottom:30px">
                     <h3 style="color:white">Registar Utilizador</h3>
                 </div>
-                <form th:action="@{/user/save}" method="post" th:object="${user}">
+                <form th:action="@{/auth/register}" method="post" th:object="${user}">
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <input type="text" class=" input_user"
