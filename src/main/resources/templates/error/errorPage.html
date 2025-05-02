@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Erro</title>
+  <link rel="stylesheet">
+</head>
+<body style="background: linear-gradient(to right, #141e30, #243b55); color: white; padding: 2rem;">
+
+<div style="text-align: center;">
+  <h1 th:text="${errorTitle}">Erro</h1>
+  <p th:text="${errorMessage}">Ocorreu um erro inesperado.</p>
+
+  <a href="/" class="btn btn-outline-light mt-3">Voltar à página inicial</a>
+</div>
+
+</body>
+</html>
+

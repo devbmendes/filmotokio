@@ -45,7 +45,7 @@ public class UserImpl implements UserInterface{
 
     @Override
     public Optional<User> findById(Long id) {
-        return Optional.of(userRepository.findById(id).orElseThrow());
+        return userRepository.findById(id);
     }
 
     @Override

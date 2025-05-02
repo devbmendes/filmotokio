@@ -11,10 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,13 +37,11 @@ public class FilmController {
         return "filmAdd";
     }
     @GetMapping("/{id}")
-    public String getById(@PathVariable Long id,Model model){
+    public String getById(@PathVariable Long id,Model model) throws NoSuchFieldException {
         Optional<Film> film = filmImpl.findById(id);
         if (film.isPresent()){
-            model.addAttribute("film",film.get());
-            model.addAttribute("review",new ReviewDto());
-        }else{
-            model.addAttribute("errorMessage","Filme não encontrado");
+            model.addAttribute("film", film.get());
+            model.addAttribute("review", new ReviewDto());
         }
         return "filmID";
     }

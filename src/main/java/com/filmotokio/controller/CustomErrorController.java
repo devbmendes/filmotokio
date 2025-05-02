@@ -9,7 +9,7 @@ public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError() {
-        return "404"; // Nome do arquivo Thymeleaf 404.html
+        return "error/404"; // Nome do arquivo Thymeleaf 404.html
     }
 
 }

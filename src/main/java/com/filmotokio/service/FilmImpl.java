@@ -1,10 +1,13 @@
 package com.filmotokio.service;
 
 import com.filmotokio.DTO.FilmDto;
+import com.filmotokio.exception.DatabaseException;
+import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.Cast;
 import com.filmotokio.model.Film;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -79,14 +82,18 @@ public class FilmImpl implements FilmeInterface{
 
             film.setPoster("/uploads/film/" + fileName);
         }
-        System.out.println(film.toString());
-        return filmRepository.save(film);
+        try {
+           Film filmSaved = filmRepository.save(film);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Erro ao salvar no banco: dados inválidos");
+        }
+        return film;
     }
 
     @Override
     public Optional<Film> findById(Long id) {
 
-        return filmRepository.findById(id);
+        return Optional.ofNullable(filmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Filme", id)));
     }
 
     @Override
