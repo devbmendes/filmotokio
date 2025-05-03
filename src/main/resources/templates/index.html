@@ -1,13 +1,17 @@
-<head th:replace="~{/fragment/head::head(title='FILMETOKIO - HOME')}" xmlns:th="http://www.w3.org/1999/xhtml">>
-    <html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{/fragment/head::head(title='FILMETOKIO - HOME')}">
 
     <body class="mt-0">
     <div>
         <div class="main-container d-flex flex-column justify-content-center align-items-center">
+            <div th:if="${param.logout}">
+                <p>Você saiu com sucesso.</p>
+            </div>
+
             <div class="logo-container">
                 <h1 class="logo-text">Filmotokio</h1>
             </div>
-            <div class="btn-group mt-4">
+            <div class="btn-group mt-4" sec:authorize="isAnonymous()">
                 <a th:href="@{/auth/login}" class="btn btn-primary btn-lg me-3">Login</a>
                 <a th:href="@{/auth/register}" class="btn btn-outline-primary btn-lg">Registar</a>
             </div>

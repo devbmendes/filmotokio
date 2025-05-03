@@ -5,6 +5,7 @@ import com.filmotokio.model.User;
 import com.filmotokio.model.UserRole;
 import com.filmotokio.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,6 +16,8 @@ import java.util.Optional;
 public class UserImpl implements UserInterface{
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAll() {
@@ -23,8 +26,9 @@ public class UserImpl implements UserInterface{
 
     @Override
     public User save(UserDto userDto) {
-
-        if(userDto.getPassword().equals(userDto.getPasswordMatch())){
+        if (userRepository.findByEmail(userDto.getEmail()).isPresent()){
+            throw new RuntimeException("Esse email ja existe");
+        }
             User user = new User();
             user.setName(userDto.getName());
             user.setSurname(userDto.getSurname());
@@ -36,11 +40,9 @@ public class UserImpl implements UserInterface{
                 user.setRole(UserRole.USER);
             }
             user.setRegistrationDate(new Date());
-            user.setPassword(userDto.getPassword());
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
             return userRepository.save(user);
-        }else{
-            return new User();
-        }
     }
 
     @Override

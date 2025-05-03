@@ -16,16 +16,21 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/","/auth/login","/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/user/**").hasRole("ADMIN") // Somente ADMIN pode acessar
+                        .requestMatchers("/film/**","/home").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/login")
-                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/auth/login?logout")
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/?logout=true")
+
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
 

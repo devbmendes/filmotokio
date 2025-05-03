@@ -25,9 +25,10 @@
           <a class="nav-link" th:href="@{/film/all}" style="color:white">PROCURAR FILMES</a>
         </li>
       </ul>
-      <a th:href="@{/}">
-        <button class="btn btn-outline-info">Logout</button>
-      </a>
+      <form th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-outline-info">Logout</button>
+      </form>
+
 
     </div>
   </div>
