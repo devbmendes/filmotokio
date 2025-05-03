@@ -93,7 +93,8 @@ public class FilmImpl implements FilmeInterface{
     @Override
     public Optional<Film> findById(Long id) {
 
-        return Optional.ofNullable(filmRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Filme", id)));
+        return Optional.ofNullable(filmRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Film", id)));
     }
 
     @Override

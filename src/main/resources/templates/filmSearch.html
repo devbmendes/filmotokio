@@ -2,8 +2,8 @@
 <div th:replace="~{/fragment/head::head(title='FILMOTOKIO - Procurar Filme')}"></div>
 <body>
     <div th:replace="~{fragment/navbar}"></div>
-    <form class="d-flex col-md-6 offset-3" role="search"
-    method="get" th:action="@{/film/search}">
+    <form class="d-flex col-md-6 offset-3 mt-5" role="search"
+    method="get" th:action="@{/film/all}">
         <input class="input_user me-2" type="search" name="title" placeholder="Procurar por nome"
                aria-label="Search">
         <button class="btn btn-outline-success" style="height:50px" type="submit">Search</button>
@@ -16,7 +16,7 @@
                 <div class="error-icon">❌</div>
                 <p >Filme não encontrado</p>
             </div>
-            <a th:href="@{/film/search}" class="btn-back-simple">Voltar para a lista</a>
+            <a th:href="@{/film/all}" class="btn-back-simple">Voltar para a lista</a>
         </div>
         <div th:if="${!film.isEmpty()}">
             <div class="container py-5 text-white">
@@ -38,10 +38,7 @@
             </div>
         </div>
     </div>
-<div class="container">
-    <div class="row">
+    <div class="container">
         <div th:replace="~{fragment/footer}"></div>
     </div>
-</div>
-
 </body>

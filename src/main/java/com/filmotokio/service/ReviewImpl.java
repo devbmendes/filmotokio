@@ -1,5 +1,6 @@
 package com.filmotokio.service;
 
+import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.Review;
 import com.filmotokio.model.User;
 import com.filmotokio.repository.ReviewRepository;
@@ -18,12 +19,11 @@ public class ReviewImpl implements ReviewInterface{
     ReviewRepository reviewRepository;
     @Override
     public List<Review> findByUserId(Long id) {
-        List<Review> reviewList = reviewRepository.findByUserId(id);
-        if (reviewList.isEmpty()){
-            return new ArrayList<>();
-        }else {
-            return reviewList;
-        }
 
+        if(reviewRepository.findByUserId(id).isEmpty()){
+            throw new ResourceNotFoundException("User",id);
+        }else {
+            return reviewRepository.findByUserId(id);
+        }
     }
 }

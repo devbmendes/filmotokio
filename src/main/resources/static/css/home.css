@@ -3,11 +3,12 @@ body{
         height: 100vh;
         background: linear-gradient(to right, #141e30, #243b55);
         color: #fff;
-        margin-top:130px!important;
+        padding-top:91px!important;
         font-family: 'Russo One', sans-serif!important;
         font-weight: normal!important;
         letter-spacing: 1px!important;
         color: #66ffff!important; /* ou o tom exato do seu neon */
+        min-height:calc(100vh - 91px);
 
 
 }

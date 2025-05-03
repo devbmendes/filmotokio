@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" style="background: linear-gradient(to right, #141e30, #243b55);">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" th:href="@{/}">
+    <a class="navbar-brand" href="#" th:href="@{/home}">
       <img th:src="@{/images/logoFilmo.png}" style="width:100px;height:65px" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link " style="color:white" aria-current="page" th:href="@{/}">HOME</a>
+          <a class="nav-link " style="color:white" aria-current="page" th:href="@{/home}">HOME</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/film}" style="color:white">NOVO FILME</a>
@@ -22,7 +22,7 @@
           <a class="nav-link" th:href="@{/cast}" style="color:white">CRIAR ELENCO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/film/search}" style="color:white">PROCURAR FILMES</a>
+          <a class="nav-link" th:href="@{/film/all}" style="color:white">PROCURAR FILMES</a>
         </li>
       </ul>
       <a th:href="@{/}">

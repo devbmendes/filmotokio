@@ -3,7 +3,7 @@
 <head th:replace="~{fragment/head::head(title='FILMOTOKIO - Lista de Utilizadores')}"></head>
 <body class="bg-dark text-light min-vh-100 d-flex flex-column p-4 body_general" >
 <div th:replace="~{fragment/navbar}"></div>
-<div class="container">
+<div class="container " style="margin-top:100px">
   <!-- Mensagens de sucesso e erro -->
   <div th:if="${successMessage}" class="alert neon-alert" role="alert" th:text="${successMessage}"></div>
   <div th:if="${errorMessage}" class="alert neon-alert-danger" role="alert" th:text="${errorMessage}"></div>

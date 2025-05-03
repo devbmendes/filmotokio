@@ -26,15 +26,12 @@ public class ReviewController {
 
     @GetMapping("/{userId}")
     public String findByUserId(@PathVariable Long userId, Model model) {
-        Optional<User> user = userImpl.findById(userId);
-        if (user.isEmpty()) {
-            model.addAttribute("userNotFound", "Este utilizador não existe");
-        } else {
+        List<Review> user = reviewImpl.findByUserId(userId);
 
+        System.out.println(userId);
             List<Review> reviewList = reviewImpl.findByUserId(userId);
             model.addAttribute("user",user);
             model.addAttribute("reviews", reviewList);
-        }
         return "reviews";
     }
 }

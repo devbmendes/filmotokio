@@ -46,7 +46,7 @@ public class FilmController {
         return "filmID";
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public String save(@ModelAttribute("film") @Valid FilmDto filmDto, BindingResult result,
                        Model model) throws IOException {
         if (result.hasErrors()){
@@ -58,11 +58,11 @@ public class FilmController {
             return "filmAdd";
         }
         filmImpl.save(filmDto);
-        return "redirect:/film/search";
+        return "redirect:/film/all";
     }
 
 
-    @GetMapping("/search")
+    @GetMapping("/all")
     public String listarFilm(@RequestParam(required = false)String title, Model model) {
         String path = "http://localhost:8080/uploads/film/";
         List<Film> film;
@@ -79,12 +79,13 @@ public class FilmController {
     }
     @PostMapping("/update/{id}")
     public String update(FilmDto filmDto,@PathVariable Long id){
-        return "redirect:/film/search";
+        return "redirect:/film/all";
     }
+
     @PostMapping("/review/save")
     public String addReview(@ModelAttribute("review")ReviewDto reviewDto){
         System.out.println(reviewDto);
-        return "redirect:/film/search";
+        return "redirect:/film/all";
     }
 
 
