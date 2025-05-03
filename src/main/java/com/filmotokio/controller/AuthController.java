@@ -25,7 +25,7 @@ public class AuthController {
                         Model model,
                         Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect:/"; // já logado, vai pra home
+            return "redirect:/home"; // já logado, vai pra home
         }
 
         if (error != null) {

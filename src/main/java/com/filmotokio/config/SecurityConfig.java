@@ -23,6 +23,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/auth/login")
+                        .defaultSuccessUrl("/home", true) // <- Redireciona sempre para /home após login
                         .permitAll()
                 )
                 .logout(logout -> logout
