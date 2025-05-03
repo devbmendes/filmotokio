@@ -82,11 +82,6 @@ public class FilmController {
         return "redirect:/film/all";
     }
 
-    @PostMapping("/review/save")
-    public String addReview(@ModelAttribute("review")ReviewDto reviewDto){
-        System.out.println(reviewDto);
-        return "redirect:/film/all";
-    }
 
 
 }

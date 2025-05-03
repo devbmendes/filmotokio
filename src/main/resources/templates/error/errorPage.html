@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Erro</title>
-  <link rel="stylesheet">
+  <title th:text="${status} + ' - ' + ${titulo}">Erro</title>
+  <link rel="stylesheet" >
 </head>
-<body style="background: linear-gradient(to right, #141e30, #243b55); color: white; padding: 2rem;">
-
-<div style="text-align: center;">
-  <h1 th:text="${errorTitle}">Erro</h1>
-  <p th:text="${errorMessage}">Ocorreu um erro inesperado.</p>
-
-  <a href="/" class="btn btn-outline-light mt-3">Voltar à página inicial</a>
-</div>
-
+<body style="background:linear-gradient(to right, #141e30, #243b55);color: #fff; font-family: Arial, sans-serif; text-align: center; padding-top:10%;height:auto;">
+<h1 style="font-size: 50px; color: #00bcd4;" th:text="${titulo}">   - Recurso não encontrada</h1>
+<h4 class="mt-3" th:text="${mensagem}">O recurso que você procura não foi encontrado.</h4>
+<a class="mt-5" th:href="@{/home}" style="color: #00bcd4; text-decoration: none; font-size: 18px;">Voltar à Página Inicial</a>
 </body>
 </html>
 
