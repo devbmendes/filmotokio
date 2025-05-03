@@ -1,4 +1,4 @@
-<html lang="" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{/fragment/head::head(title='FILMETOKIO - Adicionar Utilizador')}"></head>
 <body style="background: linear-gradient(to right, #141e30, #243b55);">
     <div th:replace="~{fragment/navbar}"></div>
@@ -40,7 +40,7 @@
                                    th:classappend="${#fields.hasErrors('birthDate')} ? 'is-invalid'" style="height:50px">
                             <div class="invalid-feedback" th:errors="*{birthDate}"></div>
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3" sec:authorize="hasRole('ADMIN')">
                             <select class="input_user" aria-label="Default select example" style="height:50px"
                                     th:field="*{userType}">
                                 <option  value="" selected>Cast Type</option>
