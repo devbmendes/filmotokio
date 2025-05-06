@@ -11,4 +11,5 @@ public interface UserInterface {
     public User save(UserDto userDto);
     public Optional<User> findById(Long id);
     public Boolean deleteById(Long id);
+        Optional<User> findByEmail(String email);
 }

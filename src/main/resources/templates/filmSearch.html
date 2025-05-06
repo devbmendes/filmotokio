@@ -23,7 +23,7 @@
                 <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;">Em cartaz</h3>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
                         <div class="col" th:each="film : ${film}">
-                            <a th:href="@{/film/{id}(id=${film.id})}" style="text-decoration:none">
+                            <a th:href="@{/review/{filmId}(filmId=${film.id})}" style="text-decoration:none">
                                 <div class="card h-100 shadow-sm">
                                     <img th:src="@{${film.poster}}" class="card-img-top" alt="Poster do Filme"
                                          style="height:200px;object-fit:cover">

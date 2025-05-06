@@ -36,15 +36,6 @@ public class FilmController {
         model.addAttribute("fotografos", castImpl.findByType("PHOTOGRAPHER"));
         return "filmAdd";
     }
-    @GetMapping("/{id}")
-    public String getById(@PathVariable Long id,Model model) throws NoSuchFieldException {
-        Optional<Film> film = filmImpl.findById(id);
-        if (film.isPresent()){
-            model.addAttribute("film", film.get());
-            model.addAttribute("review", new ReviewDto());
-        }
-        return "filmID";
-    }
 
     @PostMapping
     public String save(@ModelAttribute("film") @Valid FilmDto filmDto, BindingResult result,

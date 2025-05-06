@@ -25,10 +25,11 @@
         <p style="text-align:justify"><strong>Sinopse:</strong> <span th:text="${film.synopsis}"></span></p>
 
       </div>
-      <div class="col-md-4">
-        <form th:action="@{/review/save}" method="post" class="text-white" th:object="${review}">
+      <div class="col-md-4" >
+        <form th:action="@{/review/save}" method="post" class="text-white" th:object="${review}"
+              th:if="${showForm}">
           <input type="hidden" th:name="filmId" th:value="${film.Id}"/>
-          <input type="hidden" th:name="userId" th:field="*{userId}"/>
+          <input type="hidden" th:name="userId" th:value="${user.id}"/>
           <label for="rating">Classificar :</label>
           <div class="rating mb-3">
             <th:block th:each="i : ${#numbers.sequence(5, 1)}">
@@ -37,11 +38,17 @@
             </th:block>
           </div>
           <br>
-          <textarea id="critica" name="comment" rows="8" class="input_user mt-2"  th:field="*{filmReview}"
+          <textarea id="critica" name="comment" rows="8" class="input_user mt-2"  th:field="*{textReview}"
                     placeholder="Escreva aqui sua opinião sobre o filme..."></textarea>
           <button type="submit" class="btn btn-outline-light mt-3" style="transition: 0.3s;
             width:100%;padding:12px">Enviar Crítica</button>
         </form>
+        <div th:unless="${showForm}">
+          <h3>All Reviews for this Film:</h3>
+          <ul>
+            <li th:each="review : ${allReviews}" th:text="${review.textReview}"></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div th:replace="~{fragment/footer}"></div>

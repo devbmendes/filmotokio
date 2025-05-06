@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/","/auth/login","/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/user/**").hasRole("ADMIN") // Somente ADMIN pode acessar
+                        .requestMatchers("/user/**").hasRole("ADMIN")
                         .requestMatchers("/film/**","/home").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
                 )

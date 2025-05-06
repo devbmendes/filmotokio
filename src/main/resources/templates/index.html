@@ -5,14 +5,15 @@
     <div>
         <div class="main-container d-flex flex-column justify-content-center align-items-center">
             <div th:if="${param.logout}">
-                <p>Você saiu com sucesso.</p>
+                <p>Log out com sucesso.</p>
             </div>
 
             <div class="logo-container">
                 <h1 class="logo-text">Filmotokio</h1>
             </div>
-            <div class="btn-group mt-4" sec:authorize="isAnonymous()">
-                <a th:href="@{/auth/login}" class="btn btn-primary btn-lg me-3">Login</a>
+            <div class="btn-group mt-4" >
+                <a th:href="@{/auth/login}" class="btn btn-primary btn-lg me-3"
+                   sec:authorize="isAnonymous()">Login</a>
                 <a th:href="@{/auth/register}" class="btn btn-outline-primary btn-lg">Registar</a>
             </div>
         </div>

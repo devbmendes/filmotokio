@@ -1,6 +1,7 @@
 package com.filmotokio.service;
 
 import com.filmotokio.DTO.UserDto;
+import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.User;
 import com.filmotokio.model.UserRole;
 import com.filmotokio.repository.UserRepository;
@@ -59,5 +60,10 @@ public class UserImpl implements UserInterface{
         }else {
             return false;
         }
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }

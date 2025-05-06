@@ -17,6 +17,7 @@ public class Review {
     private Long id;
     private String textReview;
     private Date date;
+    private Long rating;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
