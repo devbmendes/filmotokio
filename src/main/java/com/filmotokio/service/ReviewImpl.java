@@ -54,7 +54,8 @@ public class ReviewImpl implements ReviewInterface{
 
         Optional<Review> review = findByUserAndFilm(user,film);
         if (review.isEmpty()){
-            Review newReview = new Review(new Date(),reviewDto.getFilmReview(),user,film);
+            Review newReview = new Review(new Date(),reviewDto.getFilmReview(),user,film,reviewDto.getRating());
+            System.out.println(newReview.getRating());
             return reviewRepository.save(newReview);
         }
         return new Review();

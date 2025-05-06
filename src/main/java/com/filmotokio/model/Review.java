@@ -20,7 +20,7 @@ public class Review {
     private Long id;
     private String textReview;
     private Date date;
-    private Long rating;
+    private Integer rating;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -32,11 +32,12 @@ public class Review {
     @JsonIgnore
     private Film film;
 
-    public Review(Date date, String textReview, User user, Film film) {
+    public Review(Date date, String textReview, User user, Film film,Integer rating) {
         this.date = date;
         this.textReview = textReview;
         this.user = user;
         this.film = film;
+        this.rating = rating;
     }
 }
 

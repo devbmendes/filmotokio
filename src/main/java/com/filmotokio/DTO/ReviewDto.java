@@ -11,5 +11,5 @@ public class ReviewDto {
     private Long filmId;
     private Long userId;
     private String filmReview;
-    private Long rating;
+    private Integer rating;
 }

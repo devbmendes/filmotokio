@@ -73,6 +73,7 @@ public class ReviewController {
                 ()-> new ResourceNotFoundException("User",0L));
 
         reviewDto.setUserId(user.getId());
+        System.out.println(reviewDto.getRating());
         reviewImpl.save(reviewDto);
 
 

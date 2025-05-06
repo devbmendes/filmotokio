@@ -51,7 +51,10 @@
                 <h5 class="card-title" style="color: #58a6ff;"
                 ></h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  Nota: <span style="color: #fbc531;"></span>
+                  Classificação :
+                  <span th:each="i : ${#numbers.sequence(1, review.rating)}" class="text-warning">
+                    ★
+                  </span>
                 </h6>
                 <p class="card-text" th:text="${review.filmReview}"></p>
               </div>
