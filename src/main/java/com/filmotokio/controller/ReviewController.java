@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/review")
@@ -38,18 +39,28 @@ public class ReviewController {
 
 
         Optional<Review> filmReviews = reviewImpl.findByUserAndFilm(user, film);
-        List<Review> reviewList = reviewImpl.findByFilmId(filmId);
+        List<ReviewDto> reviewDTOs = reviewImpl.findByFilmId(filmId)
+                .stream()
+                .map(review -> {
+                    ReviewDto dto = new ReviewDto();
+                    dto.setUserId(review.getUser().getId());
+                    dto.setFilmReview(review.getTextReview());
+                    dto.setRating(review.getRating());
+                    dto.setFilmId(review.getFilm().getId()); // ou getName
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
 
         model.addAttribute("film", film);
-        model.addAttribute("allReviews", reviewList);
+        model.addAttribute("allReviews", reviewDTOs);
         model.addAttribute("user",user);
 
         if (filmReviews.isEmpty()) {
-            model.addAttribute("review", new Review()); // para o form de novo review
+            model.addAttribute("review", new ReviewDto()); // para o form de novo review
             model.addAttribute("showForm", true);
         } else {
             model.addAttribute("showForm", false);
-            model.addAttribute("userReview", filmReviews.get()); // opcional: exibe review atual do user
         }
 
         return "filmID";
@@ -57,7 +68,13 @@ public class ReviewController {
 
 
     @PostMapping("/save")
-    public String findByUserId(@ModelAttribute ReviewDto reviewDto)  {
+    public String findByUserId(@ModelAttribute ReviewDto reviewDto,Principal principal)  {
+        User user = userImpl.findByEmail(principal.getName()).orElseThrow(
+                ()-> new ResourceNotFoundException("User",0L));
+
+        reviewDto.setUserId(user.getId());
+        reviewImpl.save(reviewDto);
+
 
         return "redirect:/film/all";
     }

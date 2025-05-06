@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@ToString
 public class User extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

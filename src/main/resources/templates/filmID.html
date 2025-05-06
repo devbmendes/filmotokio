@@ -38,16 +38,26 @@
             </th:block>
           </div>
           <br>
-          <textarea id="critica" name="comment" rows="8" class="input_user mt-2"  th:field="*{textReview}"
+          <textarea id="critica" name="comment" rows="8" class="input_user mt-2"  th:field="*{filmReview}"
                     placeholder="Escreva aqui sua opinião sobre o filme..."></textarea>
           <button type="submit" class="btn btn-outline-light mt-3" style="transition: 0.3s;
             width:100%;padding:12px">Enviar Crítica</button>
         </form>
         <div th:unless="${showForm}">
           <h3>All Reviews for this Film:</h3>
-          <ul>
-            <li th:each="review : ${allReviews}" th:text="${review.textReview}"></li>
-          </ul>
+          <div th:each="review : ${allReviews}">
+            <div class="card mb-3 border-0 shadow" style="background-color: #0d1117; color: #c9d1d9;">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #58a6ff;"
+                ></h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  Nota: <span style="color: #fbc531;"></span>
+                </h6>
+                <p class="card-text" th:text="${review.filmReview}"></p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>

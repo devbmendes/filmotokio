@@ -10,6 +10,8 @@ import com.filmotokio.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -17,6 +19,8 @@ public class ReviewImpl implements ReviewInterface{
     
     @Autowired
     private UserImpl userImpl;
+    @Autowired
+    FilmImpl filmImpl;
     @Autowired
     ReviewRepository reviewRepository;
 
@@ -37,7 +41,23 @@ public class ReviewImpl implements ReviewInterface{
 
     @Override
     public List<Review> findByFilmId(Long filmId) {
-        return List.of();
+        return reviewRepository.findByFilmId(filmId);
+    }
+
+    @Override
+    public Review save(ReviewDto reviewDto) {
+        User user = userImpl.findById(reviewDto.getUserId()).orElseThrow(()
+                -> new ResourceNotFoundException("User",reviewDto.getUserId()));
+
+        Film film = filmImpl.findById(reviewDto.getFilmId()).orElseThrow(
+                ()-> new ResourceNotFoundException("Film",reviewDto.getFilmId()));
+
+        Optional<Review> review = findByUserAndFilm(user,film);
+        if (review.isEmpty()){
+            Review newReview = new Review(new Date(),reviewDto.getFilmReview(),user,film);
+            return reviewRepository.save(newReview);
+        }
+        return new Review();
     }
 
 }
