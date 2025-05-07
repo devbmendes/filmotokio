@@ -1,41 +1,87 @@
 package com.filmotokio.config;
 
+import com.filmotokio.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtAuthFilter jwtAuthFilter;
+    private final UserDetailsService userDetailsService;
+
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, UserDetailsService userDetailsService) {
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                // Desativa CSRF para facilitar o uso com API (você pode reativar depois, se quiser)
+        .csrf(AbstractHttpConfigurer::disable) // <- nova forma de desabilitar CSRF
+
+                // Sessão: apenas necessária para páginas MVC
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+                )
+
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/auth/login","/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
+                        // MVC público
+                        .requestMatchers("/", "/auth/login", "/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
+
+                        // Endpoints REST públicos
+                        .requestMatchers("/api/auth/**").permitAll()
+
+                        // Protege endpoints REST com JWT
+                        .requestMatchers("/api/**").authenticated()
+
+                        // MVC privado
                         .requestMatchers("/user/**").hasRole("ADMIN")
-                        .requestMatchers("/film/**","/home").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/film/**", "/home").hasAnyRole("USER", "ADMIN")
+
+                        // Demais rotas
                         .anyRequest().authenticated()
                 )
+
+                // Login para MVC
                 .formLogin(form -> form
                         .loginPage("/auth/login")
-                        .defaultSuccessUrl("/home", true) // <- Redireciona sempre para /home após login
+                        .defaultSuccessUrl("/home", true)
                         .permitAll()
                 )
+
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/?logout=true")
-
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
-                );
+                )
+
+                // Adiciona o filtro JWT antes do filtro padrão
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        authBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        return authBuilder.build();
     }
 
     @Bean
@@ -43,4 +89,3 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
