@@ -74,10 +74,10 @@ public class ReviewController {
                 ()-> new ResourceNotFoundException("User",0L));
 
         reviewDto.setUserId(user.getId());
-        System.out.println(reviewDto.getRating());
+        Long filmId = reviewDto.getFilmId();
         reviewImpl.save(reviewDto);
 
 
-        return "redirect:/film/all";
+        return "redirect:/review/"+filmId;
     }
 }
