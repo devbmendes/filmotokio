@@ -48,13 +48,12 @@
           <div th:each="review : ${allReviews}">
             <div class="card mb-3 border-0 shadow" style="background-color: #0d1117; color: #c9d1d9;">
               <div class="card-body">
-                <h5 class="card-title" style="color: #58a6ff;"
+                <h5 class="card-title" th:text="${review.filmReview}" style="color: #58a6ff;"
                 ></h5>
                 <h6 class="card-subtitle mb-2 text-muted">
                   Classificação :
-                  <span th:each="i : ${#numbers.sequence(1, review.rating)}" class="text-warning">
-                    ★
-                  </span>
+                  <span th:each="i : ${#numbers.sequence(1, review.rating ?: 0)}"
+                        class="text-warning">★</span>
                 </h6>
                 <p class="card-text" th:text="${review.filmReview}"></p>
               </div>

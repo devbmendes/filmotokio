@@ -35,7 +35,7 @@ public class UserImpl implements UserInterface{
             user.setSurname(userDto.getSurname());
             user.setEmail(userDto.getEmail());
             user.setBirthDate(userDto.getBirthDate());
-            if(userDto.getUserType().equalsIgnoreCase("ADMIN")){
+            if("ADMIN".equalsIgnoreCase(userDto.getUserType())){
                 user.setRole(UserRole.ADMIN);
             }else {
                 user.setRole(UserRole.USER);

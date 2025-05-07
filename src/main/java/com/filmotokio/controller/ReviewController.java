@@ -57,11 +57,12 @@ public class ReviewController {
         model.addAttribute("user",user);
 
         if (filmReviews.isEmpty()) {
-            model.addAttribute("review", new ReviewDto()); // para o form de novo review
             model.addAttribute("showForm", true);
+            model.addAttribute("review", new ReviewDto()); // para o form de novo review
         } else {
             model.addAttribute("showForm", false);
         }
+
 
         return "filmID";
     }
