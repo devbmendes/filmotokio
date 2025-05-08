@@ -61,4 +61,22 @@ public class ReviewImpl implements ReviewInterface{
         return new Review();
     }
 
+    @Override
+    public List<ReviewDto> findByUser(User user) {
+        User findUser = userImpl.findById(user.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User", user.getId()));
+
+        List<Review> reviews = reviewRepository.findByUser(findUser);
+
+        return reviews.stream().map(this::toDto).toList();
+    }
+    private ReviewDto toDto(Review review) {
+        ReviewDto dto = new ReviewDto();
+        dto.setFilmId(review.getFilm().getId());
+        dto.setUserId(review.getUser().getId());
+        dto.setFilmReview(review.getTextReview());
+        dto.setRating(review.getRating());
+        return dto;
+    }
+
 }

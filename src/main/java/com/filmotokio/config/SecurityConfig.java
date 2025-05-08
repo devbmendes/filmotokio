@@ -1,6 +1,9 @@
 package com.filmotokio.config;
 
 import com.filmotokio.security.JwtAuthFilter;
+import com.filmotokio.security.JwtAuthenticationFilter;
+import com.filmotokio.security.JwtUtil;
+import com.filmotokio.service.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,15 +23,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
-    private final UserDetailsService userDetailsService;
+    private final MyUserDetailsService userDetailsService;
+    private final JwtUtil jwtUtil;
 
-    public SecurityConfig(JwtAuthFilter jwtAuthFilter, UserDetailsService userDetailsService) {
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, MyUserDetailsService userDetailsService,JwtUtil jwtUtil) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.userDetailsService = userDetailsService;
+        this.jwtUtil = jwtUtil;
+
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtUtil, userDetailsService);
+
         http
                 // Desativa CSRF para facilitar o uso com API (você pode reativar depois, se quiser)
         .csrf(AbstractHttpConfigurer::disable) // <- nova forma de desabilitar CSRF

@@ -15,4 +15,5 @@ public interface ReviewInterface {
     Optional<Review> findByUserAndFilm(User user, Film film);
     List<Review> findByFilmId(Long filmId);
     Review save(ReviewDto reviewDto);
+    List<ReviewDto> findByUser(User user);
 }
