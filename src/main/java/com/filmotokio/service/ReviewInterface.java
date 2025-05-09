@@ -1,6 +1,7 @@
 package com.filmotokio.service;
 
 import com.filmotokio.DTO.ReviewDto;
+import com.filmotokio.DTO.ReviewListDto;
 import com.filmotokio.model.Film;
 import com.filmotokio.model.Review;
 import com.filmotokio.model.User;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public interface ReviewInterface {
     List<Review> findFilmByUserId(Long id);
     Optional<Review> findByUserAndFilm(User user, Film film);
-    List<Review> findByFilmId(Long filmId);
+    List<ReviewListDto> findByFilmId(Long filmId);
     Review save(ReviewDto reviewDto);
     List<ReviewDto> findByUser(User user);
 }

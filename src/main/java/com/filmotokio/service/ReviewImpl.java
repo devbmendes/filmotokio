@@ -1,8 +1,8 @@
 package com.filmotokio.service;
 
 import com.filmotokio.DTO.ReviewDto;
+import com.filmotokio.DTO.ReviewListDto;
 import com.filmotokio.exception.ResourceNotFoundException;
-import com.filmotokio.exception.ReviewExistException;
 import com.filmotokio.model.Film;
 import com.filmotokio.model.Review;
 import com.filmotokio.model.User;
@@ -10,10 +10,11 @@ import com.filmotokio.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+
 @Service
 public class ReviewImpl implements ReviewInterface{
     
@@ -26,7 +27,6 @@ public class ReviewImpl implements ReviewInterface{
 
     @Override
     public List<Review> findFilmByUserId(Long id) {
-
         if(reviewRepository.findByUserId(id).isEmpty()){
             throw new ResourceNotFoundException("User",id);
         }else {
@@ -40,9 +40,21 @@ public class ReviewImpl implements ReviewInterface{
     }
 
     @Override
-    public List<Review> findByFilmId(Long filmId) {
-        return reviewRepository.findByFilmId(filmId);
-    }
+    public List<ReviewListDto> findByFilmId(Long filmId) {
+        List<ReviewListDto> listDtos = new ArrayList<>();
+        List<Review> reviewList = reviewRepository.findByFilmId(filmId);
+        SimpleDateFormat sdf = new SimpleDateFormat("d 'de' MMMM 'de' yyyy", new Locale("pt", "BR"));
+             for (Review review : reviewList) {
+                 // Formata a data
+                 String dataFormatada = sdf.format(review.getDate());
+                 // Capitaliza a primeira letra (ex: "maio" -> "Maio")
+                 ReviewListDto reviewListDto = new ReviewListDto(
+                         review.getUser().getName()+" "+review.getUser().getSurname(),
+                         dataFormatada,review.getTextReview(),review.getRating());
+                 listDtos.add(reviewListDto);
+             }
+           return  listDtos;
+        }
 
     @Override
     public Review save(ReviewDto reviewDto) {

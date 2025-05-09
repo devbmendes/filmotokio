@@ -1,7 +1,6 @@
 package com.filmotokio.config;
 
 import com.filmotokio.security.JwtAuthFilter;
-import com.filmotokio.security.JwtAuthenticationFilter;
 import com.filmotokio.security.JwtUtil;
 import com.filmotokio.service.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -35,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtUtil, userDetailsService);
+        JwtAuthFilter jwtFilter = new JwtAuthFilter(jwtUtil, userDetailsService);
 
         http
                 // Desativa CSRF para facilitar o uso com API (você pode reativar depois, se quiser)
@@ -47,6 +45,12 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
+                        // Swagger/OpenAPI público
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
                         // MVC público
                         .requestMatchers("/", "/auth/login", "/auth/register", "/css/**", "/js/**", "/images/**").permitAll()
 

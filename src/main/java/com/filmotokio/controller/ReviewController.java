@@ -1,6 +1,7 @@
 package com.filmotokio.controller;
 
 import com.filmotokio.DTO.ReviewDto;
+import com.filmotokio.DTO.ReviewListDto;
 import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.Film;
 import com.filmotokio.model.Review;
@@ -39,18 +40,7 @@ public class ReviewController {
 
 
         Optional<Review> filmReviews = reviewImpl.findByUserAndFilm(user, film);
-        List<ReviewDto> reviewDTOs = reviewImpl.findByFilmId(filmId)
-                .stream()
-                .map(review -> {
-                    ReviewDto dto = new ReviewDto();
-                    dto.setUserId(review.getUser().getId());
-                    dto.setFilmReview(review.getTextReview());
-                    dto.setRating(review.getRating());
-                    dto.setFilmId(review.getFilm().getId()); // ou getName
-                    return dto;
-                })
-                .collect(Collectors.toList());
-
+        List<ReviewListDto> reviewDTOs = reviewImpl.findByFilmId(filmId);
 
         model.addAttribute("film", film);
         model.addAttribute("allReviews", reviewDTOs);
@@ -70,6 +60,9 @@ public class ReviewController {
 
     @PostMapping("/save")
     public String findByUserId(@ModelAttribute ReviewDto reviewDto,Principal principal)  {
+        if (reviewDto.getRating() <= 0 || reviewDto.getRating() > 5){
+            throw new IllegalArgumentException("Insira uma nota valida");
+        }
         User user = userImpl.findByEmail(principal.getName()).orElseThrow(
                 ()-> new ResourceNotFoundException("User",0L));
 

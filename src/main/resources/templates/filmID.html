@@ -44,23 +44,30 @@
             width:100%;padding:12px">Enviar Crítica</button>
         </form>
         <div th:unless="${showForm}">
-          <h3>All Reviews for this Film:</h3>
+          <h3>Todas as Críticas</h3>
           <div th:each="review : ${allReviews}">
-            <div class="card mb-3 border-0 shadow" style="background-color: #0d1117; color: #c9d1d9;">
+            <div class="card mb-4 shadow-sm border-0 rounded-4" style="background-color: #0d1117; color: #f1f1f1;">
               <div class="card-body">
-                <h5 class="card-title" th:text="${review.filmReview}" style="color: #58a6ff;"
-                ></h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  Classificação :
-                  <span th:each="i : ${#numbers.sequence(1, review.rating ?: 0)}"
-                        class="text-warning">★</span>
-                </h6>
-                <p class="card-text" th:text="${review.filmReview}"></p>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <div>
+                    <h6 class="card-title mb-0" th:text="${review.userFullName}">Joana Silva</h6>
+                    <small style="color:grey" th:text="${review.date}">15 de abril de 2025</small>
+                  </div>
+                  <div class="badge bg-primary fs-6">Pontos :
+                    <th:block th:each="i : ${#numbers.sequence(1, 5)}">
+                    <span style="font-size:1.2em"
+                            th:classappend="${i <= review.rating} ? ' text-warning' : 'bi-star text-muted'">★</span>
+                    </th:block>
+                  </div>
+                </div>
+                <p class="card-text">
+                  Um filme incrível, com atuações memoráveis e uma direção impecável. A fotografia é belíssima e o roteiro é envolvente do início ao fim.
+                </p>
               </div>
             </div>
-
           </div>
         </div>
+
       </div>
     </div>
     <div th:replace="~{fragment/footer}"></div>

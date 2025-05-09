@@ -16,10 +16,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class FilmImpl implements FilmeInterface{
@@ -66,6 +64,7 @@ public class FilmImpl implements FilmeInterface{
             film.setDuration(filmDto.getDuration());
             film.setYear(filmDto.getYear());
             film.setSynopsis(filmDto.getSynopsis());
+            film.setCreatedAt(LocalDate.now());
         List<Long> allCastIds = getAllCastIds(filmDto);
         List<Cast> elencos = new ArrayList<>();
         for (Long id : allCastIds) {

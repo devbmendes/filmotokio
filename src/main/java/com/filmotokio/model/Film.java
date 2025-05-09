@@ -2,17 +2,16 @@ package com.filmotokio.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Film {
@@ -25,6 +24,7 @@ public class Film {
     @Lob
     private String synopsis;
     private String poster;
+    LocalDate createdAt;
 
     @OneToMany(mappedBy = "film")
     @JsonIgnore
@@ -41,12 +41,5 @@ public class Film {
     )
     private List<Cast> crew;
 
-    public Film(String title, Integer year, Integer duration, String synopsis, String poster, boolean migrate) {
-        this.title = title;
-        this.year = year;
-        this.duration = duration;
-        this.synopsis = synopsis;
-        this.poster = poster;
-    }
 }
 

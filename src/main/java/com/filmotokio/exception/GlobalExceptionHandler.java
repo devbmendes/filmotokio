@@ -1,5 +1,6 @@
 package com.filmotokio.exception;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.ValidationException;
 import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+@Hidden
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

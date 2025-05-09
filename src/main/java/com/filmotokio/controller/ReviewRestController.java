@@ -7,6 +7,8 @@ import com.filmotokio.model.User;
 import com.filmotokio.security.JwtUtil;
 import com.filmotokio.service.ReviewImpl;
 import com.filmotokio.service.UserImpl;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Críticas", description = "Endpoints relacionados às críticas de filmes")
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewRestController {
