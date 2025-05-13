@@ -4,8 +4,10 @@ import com.filmotokio.DTO.ReviewDto;
 import com.filmotokio.DTO.ReviewListDto;
 import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.Film;
+import com.filmotokio.model.PersonType;
 import com.filmotokio.model.Review;
 import com.filmotokio.model.User;
+import com.filmotokio.service.CastImpl;
 import com.filmotokio.service.FilmImpl;
 import com.filmotokio.service.ReviewImpl;
 import com.filmotokio.service.UserImpl;
@@ -29,6 +31,8 @@ public class ReviewController {
     UserImpl userImpl;
     @Autowired
     FilmImpl filmImpl;
+    @Autowired
+    CastImpl castImpl;
 
     @GetMapping("/{filmId}")
     public String getById(@PathVariable Long filmId, Model model, Principal principal) throws NoSuchFieldException {
@@ -38,6 +42,8 @@ public class ReviewController {
         User user = userImpl.findByEmail(principal.getName()).orElseThrow(
                 ()-> new ResourceNotFoundException("User",0L));
 
+        model.addAttribute("diretores",castImpl.getDirectoresByFilm(filmId,PersonType.DIRECTOR));
+        model.addAttribute("atores",castImpl.getDirectoresByFilm(filmId,PersonType.ACTOR));
 
         Optional<Review> filmReviews = reviewImpl.findByUserAndFilm(user, film);
         List<ReviewListDto> reviewDTOs = reviewImpl.findByFilmId(filmId);
@@ -60,12 +66,11 @@ public class ReviewController {
 
     @PostMapping("/save")
     public String findByUserId(@ModelAttribute ReviewDto reviewDto,Principal principal)  {
-        if (reviewDto.getRating() <= 0 || reviewDto.getRating() > 5){
+        if (reviewDto.getRating() < 0 || reviewDto.getRating() > 5){
             throw new IllegalArgumentException("Insira uma nota valida");
         }
         User user = userImpl.findByEmail(principal.getName()).orElseThrow(
                 ()-> new ResourceNotFoundException("User",0L));
-
         reviewDto.setUserId(user.getId());
         Long filmId = reviewDto.getFilmId();
         reviewImpl.save(reviewDto);

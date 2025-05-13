@@ -27,6 +27,10 @@ public class CastImpl implements CastInterface{
         Cast cast = new Cast(castDto.getName(),castDto.getSurname(),castDto.getEmail(), PersonType.valueOf(castDto.getType()));
         return castRepository.save(cast);
     }
+    @Override
+    public List<Cast> getDirectoresByFilm(Long filmId,PersonType type) {
+        return castRepository.findByFilmsIdAndType(filmId, type);
+    }
 
     @Override
     public Optional<Cast> findById(Long id) {

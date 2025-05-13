@@ -3,6 +3,8 @@ package com.filmotokio.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 
 @Entity
 @Getter
@@ -19,7 +21,8 @@ public class Cast extends Person{
     @Enumerated(EnumType.STRING)
     private PersonType type;
 
-
+    @ManyToMany(mappedBy = "elenco")
+    private List<Film> films;
 
     public Cast(String name, String surname,String email, PersonType type) {
         super(name, surname,email);

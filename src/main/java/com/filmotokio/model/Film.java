@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +23,8 @@ public class Film {
     @Lob
     private String synopsis;
     private String poster;
-    LocalDate createdAt;
+    private LocalDate createdAt;
+    private LocalDate migration;
 
     @OneToMany(mappedBy = "film")
     @JsonIgnore
@@ -39,7 +39,7 @@ public class Film {
             joinColumns = @JoinColumn(name = "film_id"),
             inverseJoinColumns = @JoinColumn(name = "cast_id")
     )
-    private List<Cast> crew;
+    private List<Cast> elenco;
 
 }
 

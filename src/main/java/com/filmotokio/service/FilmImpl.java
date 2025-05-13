@@ -5,6 +5,7 @@ import com.filmotokio.exception.DatabaseException;
 import com.filmotokio.exception.ResourceNotFoundException;
 import com.filmotokio.model.Cast;
 import com.filmotokio.model.Film;
+import com.filmotokio.model.PersonType;
 import com.filmotokio.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -70,7 +71,7 @@ public class FilmImpl implements FilmeInterface{
         for (Long id : allCastIds) {
             castImpl.findById(id).ifPresent(elencos::add);
         }
-    film.setCrew(elencos);
+    film.setElenco(elencos);
 
         MultipartFile multipartFile = filmDto.getPoster();
         if(multipartFile!=null && !multipartFile.isEmpty()){
@@ -119,5 +120,10 @@ public class FilmImpl implements FilmeInterface{
             return new Film();
         }
 
+    }
+    @Override
+    public List<Film> findNewFilmsForToday() {
+        LocalDate today = LocalDate.now();
+        return filmRepository.findByCreatedAt(today);
     }
 }
