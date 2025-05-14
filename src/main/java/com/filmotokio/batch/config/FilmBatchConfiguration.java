@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -41,6 +42,9 @@ public class FilmBatchConfiguration {
 
     @Autowired
     private PlatformTransactionManager transactionManager;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Bean
     public JdbcCursorItemReader<Film> reader() {
@@ -74,10 +78,11 @@ public class FilmBatchConfiguration {
     }
 
     @Bean
-    public Job migrateFilmsJob() {
+    public Job migrateFilmsJob(JobRepository jobRepository,
+                               JdbcTemplate jdbcTemplate) {
         return new JobBuilder("migrateFilmsJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .listener(new FilmMigrationJobListener())
+                .listener(new FilmMigrationJobListener(jdbcTemplate)) // Passa o JdbcTemplate
                 .start(migrateFilmsStep())
                 .build();
     }
