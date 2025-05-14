@@ -1,66 +1,72 @@
 package com.filmotokio.batch.config;
 
+import com.filmotokio.batch.job.FilmMigrationJobListener;
+import com.filmotokio.batch.mapper.FilmRowMapper;
+import com.filmotokio.batch.writer.FilmWriteListener;
+import com.filmotokio.model.Film;
+import com.filmotokio.repository.FilmRepository;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
-import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
-import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.database.JdbcCursorItemReader;
+import org.springframework.batch.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.batch.item.file.FlatFileItemWriter;
-import org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor;
+import org.springframework.batch.item.file.builder.FlatFileItemWriterBuilder;
 import org.springframework.batch.item.file.transform.DelimitedLineAggregator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.transaction.PlatformTransactionManager;
+
 import javax.sql.DataSource;
+import java.time.LocalDate;
 
 @Configuration
 @EnableBatchProcessing
 public class FilmBatchConfiguration {
 
     @Autowired
-    public JobBuilderFactory jobBuilderFactory;
+    private DataSource dataSource;
 
     @Autowired
-    public StepBuilderFactory stepBuilderFactory;
+    private FilmRepository filmRepository;
 
     @Autowired
-    public DataSource dataSource;
+    private JobRepository jobRepository;
 
     @Autowired
-    public FilmRepository filmRepository;
+    private PlatformTransactionManager transactionManager;
 
     @Bean
     public JdbcCursorItemReader<Film> reader() {
-        JdbcCursorItemReader<Film> reader = new JdbcCursorItemReader<>();
-        reader.setDataSource(dataSource);
-        reader.setSql("SELECT * FROM film WHERE migration IS NULL");
-        reader.setRowMapper(new FilmRowMapper());
-        return reader;
+        return new JdbcCursorItemReaderBuilder<Film>()
+                .name("filmReader")
+                .dataSource(dataSource)
+                .sql("SELECT id, title, year, duration, synopsis, poster, createdAt, migration FROM film WHERE migration IS NULL")
+                .rowMapper(new FilmRowMapper())
+                .build();
     }
 
     @Bean
     public FlatFileItemWriter<Film> writer() {
-        FlatFileItemWriter<Film> writer = new FlatFileItemWriter<>();
-        writer.setResource(new FileSystemResource("films_migrated_" + LocalDate.now() + ".csv"));
-
-        DelimitedLineAggregator<Film> lineAggregator = new DelimitedLineAggregator<>();
-        lineAggregator.setDelimiter(",");
-
-        BeanWrapperFieldExtractor<Film> fieldExtractor = new BeanWrapperFieldExtractor<>();
-        fieldExtractor.setNames(new String[]{"id", "title", "year", "duration", "synopsis", "poster", "createdAt"});
-        lineAggregator.setFieldExtractor(fieldExtractor);
-
-        writer.setLineAggregator(lineAggregator);
-        return writer;
+        return new FlatFileItemWriterBuilder<Film>()
+                .name("filmWriter")
+                .resource(new FileSystemResource("films_migrated_" + LocalDate.now() + ".csv"))
+                .delimited()
+                .delimiter(",")
+                .names(new String[]{"id", "title", "year", "duration", "synopsis", "poster", "createdAt"})
+                .build();
     }
 
     @Bean
-    public Step step1() {
-        return stepBuilderFactory.get("step1")
-                .<Film, Film>chunk(10)
+    public Step migrateFilmsStep() {
+        return new StepBuilder("migrateFilmsStep", jobRepository)
+                .<Film, Film>chunk(10, transactionManager)
                 .reader(reader())
                 .writer(writer())
                 .listener(new FilmWriteListener(filmRepository))
@@ -69,11 +75,10 @@ public class FilmBatchConfiguration {
 
     @Bean
     public Job migrateFilmsJob() {
-        return jobBuilderFactory.get("migrateFilmsJob")
+        return new JobBuilder("migrateFilmsJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
                 .listener(new FilmMigrationJobListener())
-                .flow(step1())
-                .end()
+                .start(migrateFilmsStep())
                 .build();
     }
 }
