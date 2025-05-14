@@ -17,7 +17,7 @@ public class FilmRowMapper implements RowMapper<Film> {
         film.setDuration(rs.getInt("duration"));
         film.setSynopsis(rs.getString("synopsis"));
         film.setPoster(rs.getString("poster"));
-        
+
         // Tratamento para LocalDate
         film.setCreatedAt(rs.getObject("createdAt", LocalDate.class));
         // Tratamento para migration que pode ser nulo
