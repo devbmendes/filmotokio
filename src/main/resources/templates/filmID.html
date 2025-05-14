@@ -11,19 +11,29 @@
       <p th:text="${errorMessage}"></p>
     </div>
   </div>
-  <div class="container" th:if="${film}">
+  <div class="container" th:if="${film}"style="min-height:30rem">
     <div class="row">
       <div class="col-md-4">
         <img th:src="${film.poster}" alt="Capa do Filme" class="film-image">
       </div>
       <div class="col-md-4 text-white">
-        <p th:text="${film.title}">Título do Filme</p>
-        <p><strong>Ano:</strong> <span class="" th:text="${film.year}">2023</span></p>
-        <p><strong>Diretores:</strong> <span th:text="${film.title}">Nome dos Diretores</span></p>
-        <p><strong>Atores:</strong> <span th:text="${film.title}">Nome dos Atores</span></p>
-        <p><strong>Músicos:</strong> <span th:text="${film.title}">Nome dos Músicos</span></p>
-        <p style="text-align:justify"><strong>Sinopse:</strong> <span th:text="${film.synopsis}"></span></p>
-
+        <p>Título:<span class="filmDesc" th:text="${film.title}"
+        ></span><span class="filmDesc" th:text="' (' + ${film.year} + ')'"></span></p>
+        <p>Filme de:
+          <span th:each="diretor, stat : ${diretores}">
+            <span class="filmDesc" th:text="${diretor.name}"></span>
+            <span class="filmDesc" th:text="${diretor.surname}"></span>
+            <span th:if="${!stat.last}">, </span>
+          </span>
+        </p>
+        <p>Elencos:
+          <span th:each="ator, stat : ${atores}">
+            <span class="filmDesc" th:text="${ator.name}"></span>
+            <span class="filmDesc" th:text="${ator.surname}"></span>
+            <span th:if="${!stat.last}">, </span>
+          </span>
+        </p>
+        <p style="text-align:justify">Sinopse: <span class="filmDesc" th:text="${film.synopsis}"></span></p>
       </div>
       <div class="col-md-4" >
         <form th:action="@{/review/save}" method="post" class="text-white" th:object="${review}"
@@ -53,23 +63,23 @@
                     <h6 class="card-title mb-0" th:text="${review.userFullName}">Joana Silva</h6>
                     <small style="color:grey" th:text="${review.date}">15 de abril de 2025</small>
                   </div>
-                  <div class="badge bg-primary fs-6">Pontos :
+                  <div class="badge bg-primary fs-6" style="padding:12px">
                     <th:block th:each="i : ${#numbers.sequence(1, 5)}">
                     <span style="font-size:1.2em"
                             th:classappend="${i <= review.rating} ? ' text-warning' : 'bi-star text-muted'">★</span>
                     </th:block>
+                    <span style="font-weight:500;padding:5px 10px;background:black;border-radius: 3px;" th:text="${review.rating}+',0'"></span>
                   </div>
                 </div>
-                <p class="card-text">
-                  Um filme incrível, com atuações memoráveis e uma direção impecável. A fotografia é belíssima e o roteiro é envolvente do início ao fim.
-                </p>
+                <p class="card-text" th:text="${review.reviewText}"></p>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
+  </div>
+  <div class="container">
     <div th:replace="~{fragment/footer}"></div>
   </div>
 

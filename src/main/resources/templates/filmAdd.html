@@ -1,5 +1,5 @@
 <html lang="" xmlns:th="http://www.w3.org/1999/xhtml">
-<div th:replace="~{fragment/head::head(title='FILMETOKIO - Adicionar Filme')}">
+<div th:replace="~{fragment/head::head(title='FILMOTOKIO - Adicionar Filme')}">
 </div>
 <body>
 <div th:replace="~{fragment/navbar}"></div>
@@ -40,7 +40,7 @@
               <div class="invalid-feedback" th:errors="*{diretoresIds}"></div>
             </div>
             <div class="col">
-              <label class="form-label">Roteiristas</label>
+              <label class="form-label">Escritores</label>
               <select multiple class="select2 input_user" th:field="*{roteiristasIds}"
                       th:classappend="${#fields.hasErrors('roteiristasIds')} ? 'is-invalid'">
                 <option th:each="p : ${roteiristas}" th:value="${p.id}" th:text="${p.name}"></option>
@@ -67,9 +67,9 @@
             </div>
             <div class="col">
               <label class="form-label">Fotógrafo</label>
-              <select class=" input_user" th:field="*{fotografoId}"
+              <select multiple class=" select2 input_user" th:field="*{fotografoId}"
                       th:classappend="${#fields.hasErrors('fotografoId')} ? 'is-invalid'">
-                <option th:each="p : ${fotografo}" th:value="${p.id}" th:text="${p.name}"></option>
+                <option class="input_user" th:each="p : ${fotografos}" th:value="${p.id}" th:text="${p.name}"></option>
               </select>
               <div class="invalid-feedback" th:errors="*{fotografoId}"></div>
             </div>

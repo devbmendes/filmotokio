@@ -32,3 +32,6 @@
                 .rating label:hover ~ label {
                     color: gold;
                 }
+            .filmDesc{
+                font-size:0.8em;
+            }
