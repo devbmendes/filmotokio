@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.util.List;
@@ -39,16 +40,18 @@ public class FilmController {
 
     @PostMapping
     public String save(@ModelAttribute("film") @Valid FilmDto filmDto, BindingResult result,
-                       Model model) throws IOException {
+                       Model model, RedirectAttributes redirectAttributes) throws IOException {
         if (result.hasErrors()){
             model.addAttribute("diretores", castImpl.findByType("DIRECTOR"));
             model.addAttribute("roteiristas", castImpl.findByType("WRITER"));
             model.addAttribute("musicos", castImpl.findByType("MUSICIAN"));
             model.addAttribute("atores", castImpl.findByType("ACTOR"));
             model.addAttribute("fotografos", castImpl.findByType("PHOTOGRAPHER"));
+
             return "filmAdd";
         }
         filmImpl.save(filmDto);
+        redirectAttributes.addFlashAttribute("successMessage","Filme adicionado com sucesso");
         return "redirect:/film/all";
     }
 
