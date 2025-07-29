@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{/fragment/head::head(title='FILMOTOKIO - Lista de Filmes')}"></head>
+<body>
+<div th:replace="~{fragment/navbar}"></div>
+<h3 class="text-center mb-10">Lista de Filmes</h3>
+<div class="container">
+    <ul class="list-group">
+        <li th:each="film : ${films}" class="list-group-item d-flex justify-content-between align-items-center text-light user-item">
+            <div>
+                <h5 class="mb-1" th:text="${film.title}"></h5>
+                <small th:text="${film.year}"></small>
+            </div>
+            <div>
+                <a  class="btn btn-outline-info btn-sm me-2">Ver</a>
+                <a  class="btn btn-outline-warning btn-sm me-2">Atualizar</a>
+                <a  class="btn btn-outline-danger btn-sm">
+                    Deletar</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
