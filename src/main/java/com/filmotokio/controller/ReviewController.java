@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/review")
+@RequestMapping("/film")
 public class ReviewController {
 
     @Autowired
@@ -64,8 +65,9 @@ public class ReviewController {
     }
 
 
-    @PostMapping("/save")
-    public String findByUserId(@ModelAttribute ReviewDto reviewDto,Principal principal)  {
+    @PostMapping("/review/save")
+    public String findByUserId(@ModelAttribute ReviewDto reviewDto, Principal principal,
+                               RedirectAttributes redirectAttributes)  {
         if (reviewDto.getRating() < 0 || reviewDto.getRating() > 5){
             throw new IllegalArgumentException("Insira uma nota valida");
         }
@@ -74,8 +76,9 @@ public class ReviewController {
         reviewDto.setUserId(user.getId());
         Long filmId = reviewDto.getFilmId();
         reviewImpl.save(reviewDto);
+        redirectAttributes.addFlashAttribute("reviewSuccess",
+                user.getName()+" "+user.getSurname()+" adicionou uma critica");
 
-
-        return "redirect:/review/"+filmId;
+        return "redirect:/film/"+filmId;
     }
 }

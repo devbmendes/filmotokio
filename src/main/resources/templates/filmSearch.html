@@ -2,44 +2,52 @@
 <div th:replace="~{/fragment/head::head(title='FILMOTOKIO - Procurar Filme')}"></div>
 <body>
     <div th:replace="~{fragment/navbar}"></div>
-    <form class="d-flex col-md-6 offset-3 mt-5" role="search"
-    method="get" th:action="@{/film/all}">
-        <input class="input_user me-2" type="search" name="title" placeholder="Procurar por nome"
-               aria-label="Search">
-        <button class="btn btn-outline-success" style="height:50px" type="submit">Search</button>
-    </form>
-    <div id="alert-suc" th:if="${successMessage}" class="alert neon-alert container" role="alert" th:text="${successMessage}"></div>
-    <!-- Lista de filmes -->
-    <div class="col-md-8 offset-2 mb-3" >
-        <div class="container" th:classappend="${errorMessage} ? 'height_view'"
-             th:if="${film.isEmpty()}">
-            <div  class="alert alert-danger custom-error">
-                <div class="error-icon">❌</div>
-                <p >Filme não encontrado</p>
-            </div>
-            <a th:href="@{/film/all}" class="btn-back-simple">Voltar para a lista</a>
-        </div>
-        <div th:if="${!film.isEmpty()}">
-            <div class="container py-5 text-white">
-                <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;">Em cartaz</h3>
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-                        <div class="col" th:each="film : ${film}">
-                            <a th:href="@{/review/{filmId}(filmId=${film.id})}" style="text-decoration:none">
-                                <div class="card h-100 shadow-sm">
-                                    <img th:src="@{${film.poster}}"
-                                         class="card-img-top" alt="Poster do Filme"
-                                         style="width:100%;height:auto;object-fit:contain;display:block;background-color:#000;">
-                                    <div class="card-body" style="background:#0d1117;color:white">
-                                        <h5 class="card-title text-truncate" th:text="${film.title}"></h5>
-                                        <p class="card-text small" th:text="'Ano :  ' + ${film.year}"></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12  mt-5">
+                <form class="d-flex " role="search" style="max-width:700px;margin:0 auto;"
+                      method="get" th:action="@{/film/all}">
+                    <input class="input_user me-2" type="search" name="title" placeholder="Procurar por nome"
+                           aria-label="Search">
+                    <button class="btn btn-outline-success" style="width:100px;height:50px;border-color:white;color:white;" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </div>
+
+    <div id="alert-suc" th:if="${successMessage}" class="alert neon-alert container" role="alert" th:text="${successMessage}"></div>
+    <!-- Lista de filmes -->
+    <div class="container">
+        <div class="row">
+            <div th:classappend="${errorMessage} ? 'height_view'"
+                 th:if="${film.isEmpty()}">
+                <div  class="alert alert-danger custom-error">
+                    <div class="error-icon">❌</div>
+                    <p >Filme não encontrado</p>
+                </div>
+                <a th:href="@{/film/all}" class="btn-back-simple">Voltar para a lista</a>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:if="${!film.isEmpty()}">
+        <div class="row">
+            <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;">Em cartaz</h3>
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mb-3" th:each="film : ${film}">
+                <a th:href="@{/film/{filmId}(filmId=${film.id})}" style="text-decoration:none">
+                    <div class="card h-100" style="background-color:#0f2136!important">
+                        <img th:src="@{${film.poster}}"
+                             alt="Poster do Filme"
+                             style="margin:20px;border-radius:5px;height:auto;object-fit:contain;display:block;background-color:#000;">
+                        <div class="card-body" style="padding: 0 20px 20px 20px;color:white">
+                            <h5 class="card-title text-truncate" th:text="${film.title}"></h5>
+                            <p class="card-text small" th:text="'Ano :  ' + ${film.year}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div th:replace="~{fragment/footer}"></div>
     </div>

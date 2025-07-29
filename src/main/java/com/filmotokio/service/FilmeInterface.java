@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface FilmeInterface {
 
-    public List<Film> getAll();
+    public List<FilmDto> getAll();
     public Film save(FilmDto film) throws IOException;
     public Optional<Film> findById(Long id);
     public Boolean deleteById(Long id);

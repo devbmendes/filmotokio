@@ -1,4 +1,4 @@
-package com.filmotokio.security;
+package com.filmotokio.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

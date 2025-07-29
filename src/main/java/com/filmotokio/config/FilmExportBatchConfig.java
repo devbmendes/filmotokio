@@ -74,7 +74,7 @@ public class FilmExportBatchConfig {
     public FlatFileItemWriter<Film> writer() {
         FlatFileItemWriter<Film> writer = new FlatFileItemWriter<>();
         writer.setResource(new FileSystemResource("films_export.csv"));
-        writer.setHeaderCallback(writer1 -> writer1.write("ID,Título,Data de Lançamento,Gênero"));
+        writer.setHeaderCallback(writer1 -> writer1.write("ID,Título,Data de Lançamento"));
         writer.setLineAggregator(film -> String.join(",",
                 film.getId().toString(),
                 film.getTitle(),

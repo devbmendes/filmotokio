@@ -3,6 +3,7 @@ package com.filmotokio.controller;
 import com.filmotokio.DTO.REST.AuthResponse;
 import com.filmotokio.DTO.REST.LoginRequest;
 import com.filmotokio.DTO.REST.RegisterRequest;
+import com.filmotokio.DTO.REST.RegisterResponse;
 import com.filmotokio.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,9 +22,9 @@ public class AuthRestController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
-        String token = authService.register(request);
-        return ResponseEntity.ok(new AuthResponse(request.getEmail(),token));
+    public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest request) {
+        RegisterResponse registerResponse = authService.register(request);
+        return ResponseEntity.ok(registerResponse);
     }
 
     @PostMapping("/login")

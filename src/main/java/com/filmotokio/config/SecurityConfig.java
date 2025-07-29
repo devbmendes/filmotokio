@@ -1,7 +1,7 @@
 package com.filmotokio.config;
 
-import com.filmotokio.security.JwtAuthFilter;
-import com.filmotokio.security.JwtUtil;
+import com.filmotokio.jwt.JwtAuthFilter;
+import com.filmotokio.jwt.JwtUtil;
 import com.filmotokio.service.MyUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

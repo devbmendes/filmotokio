@@ -3,6 +3,8 @@ package com.filmotokio.controller;
 import com.filmotokio.DTO.FilmDto;
 import com.filmotokio.DTO.ReviewDto;
 import com.filmotokio.model.Film;
+import com.filmotokio.model.User;
+import com.filmotokio.repository.FilmRepository;
 import com.filmotokio.service.CastImpl;
 import com.filmotokio.service.FilmImpl;
 import jakarta.validation.Valid;
@@ -26,6 +28,9 @@ public class FilmController {
 
     @Autowired
     private CastImpl castImpl;
+
+    @Autowired
+    FilmRepository filmRepository;
 
     @GetMapping
     public String film(Model model){
@@ -63,7 +68,7 @@ public class FilmController {
         if (title!= null && !title.isBlank()){
             film = filmImpl.findByTitleContainingIgnoreCase(title);
         }else {
-            film = filmImpl.getAll();
+            film = filmRepository.findAll();
         }
 
         model.addAttribute("path",path);
@@ -74,6 +79,17 @@ public class FilmController {
     @PostMapping("/update/{id}")
     public String update(FilmDto filmDto,@PathVariable Long id){
         return "redirect:/film/all";
+    }
+
+    @GetMapping("/list")
+    public String getAll(Model model){
+        List<FilmDto> filmList = filmImpl.getAll();
+        if (filmList.isEmpty()){
+            model.addAttribute("emptyList","Lista de Filme vazia");
+        }
+        System.out.println(filmList);
+        model.addAttribute("films",filmList);
+        return "filmList";
     }
 
 

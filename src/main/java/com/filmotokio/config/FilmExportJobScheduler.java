@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 
 @Slf4j
-@Component
+//@Component
 public class FilmExportJobScheduler {
 
     private final JobLauncher jobLauncher;

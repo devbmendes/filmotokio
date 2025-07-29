@@ -54,8 +54,16 @@ public class FilmImpl implements FilmeInterface{
 
 
     @Override
-    public List<Film> getAll() {
-        return filmRepository.findAll();
+    public List<FilmDto> getAll() {
+        List<FilmDto> filmDtos = new ArrayList<>();
+        List<Film> filmList = filmRepository.findAll();
+        for (Film films : filmList){
+            FilmDto filmDto = new FilmDto();
+            filmDto.setTitle(films.getTitle());
+            filmDto.setYear(films.getYear());
+            filmDtos.add(filmDto);
+        }
+        return filmDtos;
     }
 
     @Override

@@ -3,10 +3,26 @@
 <head th:replace="~{/fragment/head::head(title='FILMOTOKIO - Benvindo')}"></head>
 <body>
   <div th:replace="~{/fragment/navbar}"></div>
-  <div class="main-container d-flex flex-column justify-content-center align-items-center">
-    <h1 class="logo-text">Benvindo</h1>
-    <img th:src="@{/images/logoFilmo.png}" alt="Filmotokio logo">
-  </div>
+  <div class="main-container d-flex justify-content-space-around align-items-center">
+    <div>
+      <h1 class="logo-text">Benvindo</h1>
+      <img th:src="@{/images/logoFilmo.png}" alt="Filmotokio logo">
+    </div>
+    <div>
+      <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/TPqsPcT-gVQ"
+              title="Judgment Night Trailer"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+      </iframe>
 
+
+    </div>
+
+  </div>
+  <div class="container">
+    <div th:replace="~{fragment/footer}"></div>
+  </div>
 </body>
 </html>

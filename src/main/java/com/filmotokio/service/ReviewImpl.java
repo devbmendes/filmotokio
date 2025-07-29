@@ -47,7 +47,6 @@ public class ReviewImpl implements ReviewInterface{
              for (Review review : reviewList) {
                  // Formata a data
                  String dataFormatada = sdf.format(review.getDate());
-                 // Capitaliza a primeira letra (ex: "maio" -> "Maio")
                  ReviewListDto reviewListDto = new ReviewListDto(
                          review.getUser().getName()+" "+review.getUser().getSurname(),
                          dataFormatada,review.getTextReview(),review.getRating());
