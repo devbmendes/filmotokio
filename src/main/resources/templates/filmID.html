@@ -94,7 +94,7 @@
                   <div class=" fs-6" style="padding:12px">
                     <th:block th:each="i : ${#numbers.sequence(1, 5)}">
                     <span style="font-size:1.2em"
-                            th:classappend="${i <= review.rating} ? ' text-warning' : 'bi-star text-muted'">★</span>
+                            th:classappend="${i <= review.rating} ? ' text-warning' : 'text-muted'"><i class="bi-star-fill"></i></span>
                     </th:block>
                     <span th:text="${review.rating}+'.0'"></span>
                   </div>
@@ -113,16 +113,10 @@
   </div>
 
 <script>
-    setTimeout(function() {
-  const alertElement = document.getElementById("successAlert");
-  alertElement.classList.remove("d-none");
 
-  // Oculta após 5 segundos
-  setTimeout(() => {
-    alertElement.classList.add("d-none");
-  }, 3000);
 </script>
   <script th:src="@{/js/tooltip-init.js}"></script>
+  <script th:src="@{/js/add-review.js}"></script>
 
 </body>
 </html>
