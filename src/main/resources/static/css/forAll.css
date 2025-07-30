@@ -125,3 +125,11 @@ text-decoration: none;
        background-color:#a52a2a2b;
        border-radius:50%;
    }
+   /* Estilo personalizado para transição lenta do accordion */
+   .accordion-collapse {
+     transition: height 0.8s ease !important;
+   }
+   .accordion-item{
+       background-color: #0f2136;
+       }
+
