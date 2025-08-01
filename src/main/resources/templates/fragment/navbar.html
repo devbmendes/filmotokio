@@ -31,11 +31,18 @@
           <a class="nav-link" th:href="@{/user/all}" style="color:white">UTILIZADORES</a>
         </li>
       </ul>
-      <form th:action="@{/logout}" method="post">
-        <button type="submit" class="btn btn-outline-info">Logout</button>
-      </form>
-
-
+      <div class="dropdown" style="margin-right:30px;border-radius:50%">
+        <img th:src="@{/images/user-icone.png}"
+             style="border-radius:50%" class="dropdown-toggle" height="40" width="40" data-bs-toggle="dropdown" aria-expanded="false" alt="User Image"/>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Perfil</a></li>
+          <li>
+              <form th:action="@{/logout}" method="post" class="dropdown-item">
+                <button type="submit">Logout</button>
+              </form>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

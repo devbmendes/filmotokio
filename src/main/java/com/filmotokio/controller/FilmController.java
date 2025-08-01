@@ -87,7 +87,6 @@ public class FilmController {
         if (filmList.isEmpty()){
             model.addAttribute("emptyList","Lista de Filme vazia");
         }
-        System.out.println(filmList);
         model.addAttribute("films",filmList);
         return "filmList";
     }

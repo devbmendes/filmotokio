@@ -73,6 +73,7 @@ public class FilmImpl implements FilmeInterface{
             film.setDuration(filmDto.getDuration());
             film.setYear(filmDto.getYear());
             film.setSynopsis(filmDto.getSynopsis());
+            film.setTeaserYoutubeCode(filmDto.getTeaserYoutubeCode());
             film.setCreatedAt(LocalDate.now());
         List<Long> allCastIds = getAllCastIds(filmDto);
         List<Cast> elencos = new ArrayList<>();

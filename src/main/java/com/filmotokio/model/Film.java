@@ -25,6 +25,7 @@ public class Film {
     private String poster;
     private LocalDate createdAt;
     private LocalDate migration;
+    private String teaserYoutubeCode;
 
     @OneToMany(mappedBy = "film")
     @JsonIgnore

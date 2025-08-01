@@ -14,7 +14,7 @@
             .rating {
                     direction: rtl;
                     display: inline-flex;
-                    font-size: 3rem;
+                    font-size: 2rem;
                 }
 
                 .rating input {

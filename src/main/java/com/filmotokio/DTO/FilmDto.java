@@ -47,5 +47,7 @@ public class FilmDto {
 
     @NotNull(message = "A imagem do poster é obrigatória")
     private MultipartFile poster;
+
+    private String teaserYoutubeCode;
 }
 
