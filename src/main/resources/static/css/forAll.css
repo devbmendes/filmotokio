@@ -100,13 +100,20 @@ a, button {
         text-align:left;
 }
 .ver-teaser{
-text-decoration: none;
+    text-decoration: none;
     color: white;
     font-weight: bold;
     padding-right: 20px;
     background-color: #a52a2a2b;
     border-radius: 7px;
     border:none;
+    background:red;
+    transition: all .3s ease-in;
+    }
+
+.ver-teaser:hover{
+ background:none;
+ border:1px solid white;
     }
 
 .movie-action-feedback{

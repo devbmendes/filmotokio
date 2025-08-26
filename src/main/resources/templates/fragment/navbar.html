@@ -1,48 +1,16 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary"
-     style="background: linear-gradient(to right, #141e30, #243b55);" sec:authorize="isAuthenticated()">
+     style="background: linear-gradient(to right, #141e30, #141e30);" sec:authorize="isAuthenticated()">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" th:href="@{/home}">
+    <a class="navbar-brand" href="#" th:href="@{/film/all}">
       <img th:src="@{/images/logoFilmo.png}" style="width:100px;height:65px" alt="">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link " style="color:white" aria-current="page" th:href="@{/home}">HOME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/film}" style="color:white"
-             sec:authorize="hasRole('ADMIN')">NOVO FILME</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/auth/register}" style="color:white">CRIAR USER</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-          <a class="nav-link" th:href="@{/cast}" style="color:white"
-             >CRIAR ELENCO</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/film/all}" style="color:white">FILMES</a>
-        </li>
-        <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-          <a class="nav-link" th:href="@{/user/all}" style="color:white">UTILIZADORES</a>
-        </li>
-      </ul>
-      <div class="dropdown" style="margin-right:30px;border-radius:50%">
-        <img th:src="@{/images/user-icone.png}"
-             style="border-radius:50%" class="dropdown-toggle" height="40" width="40" data-bs-toggle="dropdown" aria-expanded="false" alt="User Image"/>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
-          <li>
-              <form th:action="@{/logout}" method="post" class="dropdown-item">
-                <button type="submit">Logout</button>
-              </form>
-          </li>
-        </ul>
-      </div>
+    <div class="user-out">
+        <form th:action="@{/logout}" method="post">
+          <button type="submit" class=" d-flex align-items-center">
+            <i class="bi bi-power me-2"></i> Logout
+          </button>
+        </form>
     </div>
   </div>
 </nav>

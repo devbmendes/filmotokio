@@ -5,3 +5,16 @@ margin-right:3rem;
 .navbar-nav{
 margin-left:20%
 }
+form button{
+color:white;
+background:transparent;
+border:none;}
+
+.user-out{
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+.user-out i{
+font-size:1.3em
+}

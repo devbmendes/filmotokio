@@ -2,6 +2,7 @@
 <div th:replace="~{/fragment/head::head(title='FILMOTOKIO - Procurar Filme')}"></div>
 <body>
     <div th:replace="~{fragment/navbar}"></div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12  mt-5">
@@ -16,7 +17,7 @@
     </div>
 
     <div id="alert-suc" th:if="${successMessage}" class="alert neon-alert container" role="alert" th:text="${successMessage}"></div>
-    <!-- Lista de filmes -->
+
     <div class="container">
         <div class="row">
             <div th:classappend="${errorMessage} ? 'height_view'"
@@ -29,10 +30,11 @@
             </div>
         </div>
     </div>
-    <div class="container" th:if="${!film.isEmpty()}">
+    <div class="container mt-5" th:if="${!film.isEmpty()}">
         <div class="row">
-            <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;">Em cartaz</h3>
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 mb-3" th:each="film : ${film}">
+            <h3 class="mb-4 fw-bold" style="border-left: 5px solid white; padding-left: 10px;
+            margin-left:20px;color:white">Populares</h3>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3" th:each="film : ${film}">
                 <a th:href="@{/film/{filmId}(filmId=${film.id})}" style="text-decoration:none">
                     <div class="card h-100" style="background-color:#0f2136!important">
                         <img th:src="@{${film.poster}}"
@@ -51,6 +53,7 @@
     <div class="container">
         <div th:replace="~{fragment/footer}"></div>
     </div>
+
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             const alert = document.getElementById("alert-suc");

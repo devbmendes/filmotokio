@@ -23,12 +23,15 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
     private final MyUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
-    public SecurityConfig(JwtAuthFilter jwtAuthFilter, MyUserDetailsService userDetailsService,JwtUtil jwtUtil) {
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, MyUserDetailsService userDetailsService,
+                          JwtUtil jwtUtil,CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
 
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
     }
 
     @Bean
@@ -61,6 +64,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/**").authenticated()
 
                         // MVC privado
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("ADMIN")
                         .requestMatchers("/film/**", "/home").hasAnyRole("USER", "ADMIN")
 
@@ -71,9 +75,10 @@ public class SecurityConfig {
                 // Login para MVC
                 .formLogin(form -> form
                         .loginPage("/auth/login")
-                        .defaultSuccessUrl("/home", true)
+                        .successHandler(customAuthenticationSuccessHandler) // usa o handler
                         .permitAll()
                 )
+
 
                 .logout(logout -> logout
                         .logoutUrl("/logout")
