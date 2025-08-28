@@ -13,8 +13,11 @@ border:none;}
 .user-out{
     display: flex;
     justify-content: space-between;
-    align-items:center;
 }
 .user-out i{
 font-size:1.3em
 }
+.user-out div a{
+text-decoration:none;
+color:white;
+margin-right:15px}

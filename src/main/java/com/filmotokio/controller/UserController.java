@@ -34,7 +34,7 @@ public class UserController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Erro ao deletar o Utilizador.");
         }
-        return "redirect:/user/all";
+        return "redirect:/admin/dashboard";
 
     }
     @GetMapping("/{id}")

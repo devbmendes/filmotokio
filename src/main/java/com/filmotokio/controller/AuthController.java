@@ -25,7 +25,7 @@ public class AuthController {
                         Model model,
                         Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect:/home"; // já logado, vai pra home
+            return "redirect:/admin/dashboard"; // já logado, vai pra home
         }
 
         if (error != null) {
@@ -56,6 +56,6 @@ public class AuthController {
             return "/auth/register";
         }
         userImpl.save(userDto);
-        return "redirect:/auth/login";
+        return "redirect:/admin/dashboard";
     }
 }

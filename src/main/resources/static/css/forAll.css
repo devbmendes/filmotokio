@@ -4,7 +4,7 @@
 .body_general {
     background: linear-gradient(to right, #141e30, #243b55);
     min-height: 100vh;
-    margin: 0;
+    margin: 20px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
