@@ -66,4 +66,9 @@ public class UserImpl implements UserInterface{
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public Long userCount() {
+        return userRepository.count();
+    }
 }

@@ -135,4 +135,9 @@ public class FilmImpl implements FilmeInterface{
         LocalDate today = LocalDate.now();
         return filmRepository.findByCreatedAt(today);
     }
+
+    @Override
+    public Long filmCount() {
+        return filmRepository.count();
+    }
 }

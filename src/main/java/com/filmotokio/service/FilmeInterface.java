@@ -16,4 +16,5 @@ public interface FilmeInterface {
     public List<Film> findByTitleContainingIgnoreCase(String title);
     public Film update(Long id,FilmDto filmDto);
     public List<Film> findNewFilmsForToday();
+    public Long filmCount();
 }

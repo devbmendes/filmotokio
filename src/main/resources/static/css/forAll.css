@@ -2,11 +2,12 @@
 
 /* Fundo padrão */
 .body_general {
-    background: linear-gradient(to right, #141e30, #243b55);
+    background: linear-gradient(to right, #141e30);
     min-height: 100vh;
     margin: 20px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius:4px;
 }
 
 /* Navbar */
@@ -139,4 +140,7 @@ a, button {
    .accordion-item{
        background-color: #0f2136;
        }
+
+   .list-group{
+   padding:10px!important}
 

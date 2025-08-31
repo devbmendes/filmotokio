@@ -33,6 +33,11 @@ public class CastImpl implements CastInterface{
     }
 
     @Override
+    public Long castCount() {
+        return castRepository.count();
+    }
+
+    @Override
     public Optional<Cast> findById(Long id) {
 
         return Optional.of(castRepository.findById(id).orElseThrow());

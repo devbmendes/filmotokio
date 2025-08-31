@@ -81,6 +81,12 @@ public class ReviewImpl implements ReviewInterface{
 
         return reviews.stream().map(this::toDto).toList();
     }
+
+    @Override
+    public Long reviewCount() {
+        return reviewRepository.count();
+    }
+
     private ReviewDto toDto(Review review) {
         ReviewDto dto = new ReviewDto();
         dto.setFilmId(review.getFilm().getId());

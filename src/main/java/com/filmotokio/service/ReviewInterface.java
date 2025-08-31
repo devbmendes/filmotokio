@@ -17,4 +17,5 @@ public interface ReviewInterface {
     List<ReviewListDto> findByFilmId(Long filmId);
     Review save(ReviewDto reviewDto);
     List<ReviewDto> findByUser(User user);
+    Long reviewCount();
 }
