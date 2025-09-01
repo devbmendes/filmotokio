@@ -1,0 +1,60 @@
+
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragment/head::head(title='FILMOTOKIO - Admin Dashboard')}"></head>
+
+<div class="admin-dash">
+    <div class="col-lg-2">
+        <div th:replace="~{fragment/menuLateral}"></div>
+    </div>
+    <div class="col-lg-10">
+        <div class="row">
+            <!-- Card Utilizadores -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="dash-content shadow-sm rounded bg-primary text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0 fw-bold counter" th:attr="data-target=${totalUsers}">0</h4>
+                        <h6 class="mb-0">Utilizadores</h6>
+                    </div>
+                    <i class="bi bi-people fs-2 opacity-75"></i>
+                </div>
+            </div>
+
+            <!-- Card Filmes -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="dash-content shadow-sm rounded bg-info text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0 fw-bold counter" th:attr="data-target=${totalFilms}">0</h4>
+                        <h6 class="mb-0">Filmes</h6>
+                    </div>
+                    <i class="bi bi-film fs-2 opacity-75"></i>
+                </div>
+            </div>
+
+            <!-- Card Críticas -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="dash-content shadow-sm rounded bg-success text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0 fw-bold counter" th:attr="data-target=${totalReviews}">0</h4>
+                        <h6 class="mb-0">Críticas</h6>
+                    </div>
+                    <i class="bi bi-chat-square-text fs-2 opacity-75"></i>
+                </div>
+            </div>
+
+            <!-- Card Sessões -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="dash-content shadow-sm rounded bg-warning text-white d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="mb-0 fw-bold counter" th:attr="data-target=${totalCasts}">0</h4>
+                        <h6 class="mb-0">Elencos</h6>
+                    </div>
+                    <i class="bi bi-calendar-event fs-2 opacity-75"></i>
+                </div>
+            </div>
+        </div>
+        <div th:replace="~{userList}"></div>
+    </div>
+</div>
+<script th:src="@{/js/countData.js}"></script>
+
+

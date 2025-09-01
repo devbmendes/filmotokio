@@ -1,0 +1,68 @@
+<div style="margin-bottom:30px">
+    <h3 style="color:white;margin-left:10px">Registar Utilizador</h3>
+</div>
+<form th:action="@{/auth/register}" method="post" th:object="${user}" style="margin:10px">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <input type="text" class=" input_user"
+                   id="firstName" placeholder="First Name"
+                   th:field="*{name}"
+                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'" style="height:50px">
+            <div class="invalid-feedback" th:errors="*{name}"></div>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="text" class=" input_user" id="LastName" placeholder="Last Name"
+                   th:field="*{surname}" style="height:50px"
+                   th:classappend="${#fields.hasErrors('surname')} ? 'is-invalid'">
+            <div class="invalid-feedback" th:errors="*{surname}"></div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <input type="text" class=" input_user"
+               id="email" placeholder="yourEmail@gmail.com"
+               th:field="*{email}"
+               th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" style="height:50px">
+        <div class="invalid-feedback" th:errors="*{email}"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <input type="date" class=" input_user" placeholder="Data de nascimento"
+                   th:field="*{birthDate}"
+                   th:classappend="${#fields.hasErrors('birthDate')} ? 'is-invalid'" style="height:50px">
+            <div class="invalid-feedback" th:errors="*{birthDate}"></div>
+        </div>
+        <div class="col-md-6 mb-3" sec:authorize="hasRole('ADMIN')">
+            <select class="input_user" aria-label="Default select example" style="height:50px"
+                    th:field="*{userType}">
+                <option  value="" selected>Cast Type</option>
+                <option  th:value="NORMAL">NORMAL</option>
+                <option  th:value="ADMIN">ADMIN</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <input type="password" class=" input_user" id="password" placeholder="Password"
+               th:field="*{password}"
+               th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" style="height:50px">
+        <div class="invalid-feedback" th:errors="*{password}"></div>
+    </div>
+
+    <div class="mb-3">
+        <input type="password" class=" input_user" id="passwordMatch"
+               placeholder="Confirm Password" th:field="*{passwordMatch}"
+               th:classappend="${#fields.hasErrors('passwordMatch')} ? 'is-invalid'" style="height:50px">
+        <div class="invalid-feedback" th:errors="*{passwordMatch}"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mb-3">
+            <button type="submit" class="btn btn-outline-light" style="width:100%;height:50px">Save</button>
+        </div>
+        <div class="col-md-4 mb-3">
+            <button class="btn btn-info" style="width:100%;height:50px">Clean</button>
+        </div>
+    </div>
+</form>

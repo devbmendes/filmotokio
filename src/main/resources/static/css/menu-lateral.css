@@ -1,0 +1,32 @@
+.sidebar{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    justify-content:space-between;
+    width:200px;
+    background: linear-gradient(to right, #141e30, #141e30);
+    transition: width .3s;
+    height:100%;
+    padding:30px;
+}
+.sidebar .sidebar-link{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:10px 20px;
+    color:white;
+    text-decoration:none;
+}
+.sidebar .description{
+font-size:14px
+}
+.sidebar .sidebar-link:hover{
+background-color:black;
+}
+.sidebar .submenu-users, .sidebar .submenu-filmes{
+    background-color:#0c1f41;
+    padding-left:10%;
+}
+.sidebar-link .icon{
+font-size:20px}

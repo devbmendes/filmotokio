@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+    margin: 0;
+
+}
+
+.admin-dash {
+    display: flex;
+    height: 100vh; /* ocupa a tela toda */
+}
+
+.admin-dash .col-lg-2 {
+    flex: 0 0 200px; /* largura fixa para menu lateral */
+    overflow: hidden; /* sem scroll aqui */
+    background: #111; /* só para exemplo */
+}
+
+.admin-dash .col-lg-10 {
+    flex: 1; /* ocupa o resto */
+    overflow-y: auto; /* scroll só aqui */
+    padding: 1rem;
+    background: #f8f9fa; /* só exemplo */
+}
+.dash-content{
+    padding:2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dash-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+.counter{
+font-size:35px}
+

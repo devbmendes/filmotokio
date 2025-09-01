@@ -1,0 +1,62 @@
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<body style="padding-top: 0px !important;background:white">
+<div class="sidebar">
+    <div class="go-home">
+        <a th:href="@{/film/all}">
+            <img th:src="@{/images/logoFilmo.png}" style="width:100px;height:65px" alt="">
+        </a>
+    </div>
+    <nav class="nav flex-column">
+        <a class="sidebar-link" th:href="@{/admin/dashboard}">
+            <span class="icon">
+                <i class="bi bi-people"></i>
+            </span>
+            <span class="description">
+                Utilizadores
+            </span>
+        </a>
+        <!--sec:authorize="hasRole('ADMIN')"-->
+        <a class="sidebar-link" href="/">
+            <span class="icon">
+                <i class="bi bi-film"></i>
+            </span>
+            <span class="description">
+                Filmes
+            </span>
+        </a>
+        <a class="sidebar-link" href="/">
+            <span class="icon">
+                <i class="bi bi-award"></i>
+            </span>
+            <span class="description">
+                Elenco
+            </span>
+        </a>
+        <a class="sidebar-link" href="/">
+            <span class="icon">
+                <i class="bi bi-film"></i>
+            </span>
+            <span class="description">
+                Filmes
+            </span>
+        </a>
+        <a class="sidebar-link" href="/">
+            <span class="icon">
+                <i class="bi bi-gear"></i>
+            </span>
+            <span class="description">
+                Meu Perfil
+            </span>
+        </a>
+    </nav>
+    <div class="log-out">
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class=" d-flex align-items-center">
+                <i class="bi bi-power me-2"></i> Logout
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+
