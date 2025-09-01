@@ -52,5 +52,39 @@
     color:white;
     background:#0f2136!important;
     border:1px solid #00e5ff;
-    margin:20px
+    margin-top:15px;
     }
+    /* Neon Pagination */
+    .neon-pagination .page-link {
+      color: #00f7ff;
+      background-color: transparent;
+      border: 1px solid #00f7ff;
+      border-radius: 8px;
+      margin: 0 4px;
+      padding: 6px 12px;
+      transition: all 0.3s ease-in-out;
+      text-shadow: 0 0 6px #00f7ff;
+      box-shadow: 0 0 6px #00f7ff inset;
+    }
+
+    .neon-pagination .page-link:hover {
+      background-color: #00f7ff;
+      color: #0a0a0a;
+
+    }
+
+    .neon-pagination .active .page-link {
+      background-color: #00f7ff;
+      color: #0a0a0a;
+      font-weight: bold;
+
+    }
+
+    .neon-pagination .disabled .page-link {
+      color: #555;
+      border-color: #333;
+      box-shadow: none;
+      text-shadow: none;
+      cursor: not-allowed;
+    }
+

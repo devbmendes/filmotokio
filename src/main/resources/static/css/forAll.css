@@ -3,11 +3,11 @@
 /* Fundo padrão */
 .body_general {
     background: linear-gradient(to right, #141e30);
-    min-height: 100vh;
-    margin: 20px;
+    margin-top: 15px;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius:4px;
+    padding-top:15px;
 }
 
 /* Navbar */

@@ -1,7 +1,7 @@
 
 <html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 <a th:href="@{/admin/user/add}" href="" class="btn btn-lg criar-user"> Criar Utilizador <span><i class=" bi bi-plus "></i></span></a>
-<div class="bg-dark text-light min-vh-100 d-flex flex-column p-4 body_general" >
+<div class="bg-dark text-light d-flex flex-column body_general" >
   <!-- Mensagens de sucesso e erro -->
   <div th:if="${successMessage}" class="alert neon-alert" role="alert" th:text="${successMessage}"></div>
   <div th:if="${errorMessage}" class="alert neon-alert-danger" role="alert" th:text="${errorMessage}"></div>
@@ -22,6 +22,31 @@
       </div>
     </li>
   </ul>
+  <nav aria-label="Page navigation" class="mt-3">
+    <ul class="pagination justify-content-center neon-pagination">
+
+      <!-- Botão anterior -->
+      <li th:classappend="${user.hasPrevious()} ? '' : 'disabled'" class="page-item">
+        <a th:href="@{/users(page=${usersPage.number - 1}, size=${user.size})}"
+           class="page-link">Anterior</a>
+      </li>
+
+      <!-- Números -->
+      <li th:each="i : ${#numbers.sequence(0, user.totalPages - 1)}"
+          th:classappend="${i == user.number} ? 'active' : ''"
+          class="page-item">
+        <a th:href="@{/admin/dashboard(page=${i}, size=${user.size})}"
+           th:text="${i + 1}" class="page-link">1</a>
+      </li>
+
+      <!-- Botão próximo -->
+      <li th:classappend="${user.hasNext()} ? '' : 'disabled'" class="page-item">
+        <a th:href="@{/admin/dashboard(page=${user.number + 1}, size=${user.size})}"
+           class="page-link">Próximo</a>
+      </li>
+    </ul>
+  </nav>
+
 </div>
 <!-- Modal de confirmação de delete -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
