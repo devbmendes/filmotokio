@@ -36,7 +36,7 @@
         <div class="col-md-6 mb-3" sec:authorize="hasRole('ADMIN')">
             <select class="input_user" aria-label="Default select example" style="height:50px"
                     th:field="*{userType}">
-                <option  value="" selected>Cast Type</option>
+                <option  value="" selected>ROLE</option>
                 <option  th:value="NORMAL">NORMAL</option>
                 <option  th:value="ADMIN">ADMIN</option>
             </select>

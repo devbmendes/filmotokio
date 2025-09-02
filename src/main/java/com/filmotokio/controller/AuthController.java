@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 
@@ -47,7 +48,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("user") @Valid UserDto userDto, BindingResult result) throws IOException {
+    public String register(@ModelAttribute("user") @Valid UserDto userDto,
+                           BindingResult result, RedirectAttributes redirectAttributes) throws IOException {
         if(result.hasErrors()){
             return "/auth/register";
         }
@@ -56,6 +58,7 @@ public class AuthController {
             return "/auth/register";
         }
         userImpl.save(userDto);
+        redirectAttributes.addFlashAttribute("successMessage","Utilizador(a) adicionado(a) com sucesso");
         return "redirect:/admin/dashboard";
     }
 }

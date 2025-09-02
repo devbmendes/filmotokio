@@ -69,6 +69,7 @@ background:#00e5ff;
 
 .criar-user:hover{
  background-color:none!important;
+ border-color:#00e5ff;
 }
     .pagination .page-link {
       background: #0d0d0d;
