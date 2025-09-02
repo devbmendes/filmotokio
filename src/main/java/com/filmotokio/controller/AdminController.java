@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class AdminController {
     }
 
     @PostMapping("/user/update/{id}")
-    public String updateUser(@PathVariable Long id,
+    public String updateUser(@PathVariable Long id, RedirectAttributes redirectAttributes,
                              @ModelAttribute("user") User updatedUser) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Utilizador inválido: " + id));
@@ -83,11 +84,10 @@ public class AdminController {
         user.setSurname(updatedUser.getSurname());
         user.setEmail(updatedUser.getEmail());
         user.setBirthDate(updatedUser.getBirthDate());
-        // se quiseres atualizar a password:
-        user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
 
         userRepository.save(user);
-        return "redirect:/user"; // volta à lista
+        redirectAttributes.addFlashAttribute("successMessage","Utilizador(a) atualizado(a) com sucesso");
+        return "redirect:/admin/dashboard"; // volta à lista
     }
 
 }

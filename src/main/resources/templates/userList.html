@@ -3,7 +3,7 @@
 
 <div class="bg-dark text-light d-flex flex-column body_general" >
   <!-- Mensagens de sucesso e erro -->
-  <div th:if="${successMessage}" class="alert neon-alert" role="alert" th:text="${successMessage}"></div>
+  <div th:if="${successMessage}" class="alert success neon-alert m-2" role="alert" th:text="${successMessage}"></div>
   <div th:if="${errorMessage}" class="alert neon-alert-danger" role="alert" th:text="${errorMessage}"></div>
   <div class="d-flex justify-content-between align-items-center m-2">
     <!-- Barra de Pesquisa -->
@@ -89,13 +89,14 @@
 <!-- Modal de confirmação de delete -->
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" style="background: linear-gradient(to right, #141e30, #243b55); color: white; border-radius: 15px;">
+    <div class="modal-content" style="background: linear-gradient(to right, #141e30); color: white; border-radius: 15px;">
       <div class="modal-header border-0">
-        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Deletar</h5>
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Remoção</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <hr>
       <div class="modal-body text-center">
-        <p>Tem certeza que deseja deletar o usuário <strong id="userName"></strong>?</p>
+        <p>Tem certeza que deseja remover <strong id="userName"></strong>?</p>
       </div>
       <div class="modal-footer border-0 justify-content-center">
         <form id="deleteForm" method="post">

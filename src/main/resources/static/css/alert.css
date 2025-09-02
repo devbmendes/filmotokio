@@ -1,10 +1,7 @@
 
      .neon-alert {
-         background-color: #0d0d2b;
-         color: #00f0ff;
-         border: 2px solid #00f0ff;
-         box-shadow: 0 0 15px #00f0ff, 0 0 30px #00f0ff;
-         font-weight: bold;
+     background-color:green;
+         border: 1px solid white;
          text-align: center;
          font-size: 1.2rem;
          animation: fadeIn 1s ease-in-out;
