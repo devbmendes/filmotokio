@@ -73,6 +73,14 @@ public class AdminController {
         model.addAttribute("roles", UserRole.values()); // 👈 popula o select dinamicamente
         return "user-update"; // página HTML para edição
     }
+    @GetMapping("/user/details/{id}")
+    public String userDetails(@PathVariable Long id,Model model){
+        User user = userImpl.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("Utilizador invalido : " +id));
+        model.addAttribute("user",user);
+        model.addAttribute("role",user.getRole().toString());
+        return "userDetail";
+    }
 
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable Long id, RedirectAttributes redirectAttributes,

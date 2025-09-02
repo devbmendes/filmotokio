@@ -25,7 +25,7 @@
       <small th:text="${user.email}">email@example.com</small>
 
       <div>
-        <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-outline-info btn-sm me-2">Ver</a>
+        <a th:href="@{/admin/user/details/{id}(id=${user.id})}" class="btn btn-outline-info btn-sm me-2">Ver</a>
         <a th:href="@{/admin/user/edit/{id}(id=${user.id})}" class="btn btn-outline-warning btn-sm me-2">Atualizar</a>
         <a href="#" class="btn btn-outline-danger btn-sm"
            data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
